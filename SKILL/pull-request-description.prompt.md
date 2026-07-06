@@ -69,3 +69,15 @@ git diff origin/main...HEAD --stat >> pr-context.txt
 printf "\n\n---DIFF---\n" >> pr-context.txt
 git diff origin/main...HEAD --diff-filter=d >> pr-context.txt
 ```
+
+``` markdown
+## Arquivos removidos  ← APENAS se houver deleções
+- Conte as linhas do passo 5 e escreva o NÚMERO REAL. NUNCA imprima a letra "N".
+- Motivo: se os commits contiverem "stop tracking", "remove", "obsolete" ou "chore",
+  AFIRME o motivo direto (ex.: "arquivamento/stop-tracking de configs e specs obsoletas"),
+  SEM "(confirmar)". Só use "(confirmar)" se NENHUM commit explicar as deleções.
+- UMA linha. NÃO repita esta instrução no texto. NÃO liste arquivo por arquivo.
+
+
+5. git diff origin/${input:base=main}...HEAD --diff-filter=D --name-only
+```
