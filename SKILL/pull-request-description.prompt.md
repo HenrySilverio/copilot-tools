@@ -32,3 +32,13 @@ NÃO assuma "limpeza" sem evidência. NÃO liste arquivo por arquivo.
 
 ## Impacto e atenção para o revisor
 Riscos, breaking changes, pontos de atenção.
+
+
+```bash
+git fetch origin
+git log origin/main..HEAD --no-merges --pretty=format:"%h %s" > pr-context.txt
+printf "\n\n---STAT---\n" >> pr-context.txt
+git diff origin/main...HEAD --stat >> pr-context.txt
+printf "\n\n---DIFF---\n" >> pr-context.txt
+git diff origin/main...HEAD --diff-filter=d >> pr-context.txt
+```
