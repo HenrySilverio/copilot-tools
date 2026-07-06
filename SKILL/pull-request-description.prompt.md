@@ -46,6 +46,21 @@ NÃO assuma "limpeza" sem evidência nos commits.
 Riscos, breaking changes, pontos de atenção.
 
 
+
+
+------
+Gere uma descrição de Pull Request a partir de #pr-context.txt.
+
+O arquivo tem três seções:
+- commits (a intenção da semana) · ---STAT--- (todos os arquivos, incl. deletados) · ---DIFF--- (conteúdo, sem deletados)
+
+Saída em **português do Brasil**, Markdown, com as seções:
+## Resumo · ## Principais alterações · ## Arquivos removidos · ## Impacto e atenção para o revisor
+
+Regras: baseie-se SÓ no arquivo; "Arquivos removidos" só se o STAT mostrar deleções, em UMA linha, motivo inferido dos commits (senão "(confirmar motivo)"), sem listar um a um; não assuma "limpeza" sem evidência; o que não estiver no arquivo, marque "(confirmar)".
+------
+
+
 ```bash
 git fetch origin
 git log origin/main..HEAD --no-merges --pretty=format:"%h %s" > pr-context.txt
