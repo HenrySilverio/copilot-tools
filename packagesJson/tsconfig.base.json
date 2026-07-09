@@ -1,0 +1,11 @@
+{
+  // ATENÇÃO: arquivo intencionalmente vazio (sem "paths").
+  // O @angular-architects/native-federation lê os mapped paths do tsconfig
+  // "base" do workspace (tsconfig.base.json se existir). Mantendo-o SEM paths,
+  // o scanner de shared-mappings não encontra os aliases internos (@app, @core,
+  // @shared) e não emite os WARN de "entryPoint (barrel file)".
+  // Os paths reais vivem em tsconfig.json e são consumidos pelo build via tsconfig.app.json.
+  // NÃO mova os "paths" para cá — isso reintroduz os warnings.
+  "compileOnSave": false,
+  "compilerOptions": {}
+}
