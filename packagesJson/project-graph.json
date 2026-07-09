@@ -1,0 +1,2731 @@
+{
+  "mode": "project",
+  "root": "c:\\Users\\i459249\\Documents\\Projetos\\recr-fed-agc-posvenda",
+  "generatedAt": "2026-07-09T18:43:42.991Z",
+  "nodes": [
+    {
+      "id": "file:.angular/cache/21.2.19/fed-node-npm-template/vite/deps/@angular-architects_native-federation.js",
+      "label": "@angular-architects_native-federation",
+      "type": "file",
+      "file": ".angular/cache/21.2.19/fed-node-npm-template/vite/deps/@angular-architects_native-federation.js",
+      "size": 1
+    },
+    {
+      "id": "dir:.angular/cache/21.2.19/fed-node-npm-template/vite/deps",
+      "label": ".angular/cache/21.2.19/fed-node-npm-template/vite/deps",
+      "type": "dir",
+      "size": 5
+    },
+    {
+      "id": "file:.angular/cache/21.2.19/fed-node-npm-template/vite/deps/chunk-Y5RQAIA6.js",
+      "label": "chunk-Y5RQAIA6",
+      "type": "file",
+      "file": ".angular/cache/21.2.19/fed-node-npm-template/vite/deps/chunk-Y5RQAIA6.js",
+      "size": 1
+    },
+    {
+      "id": "file:.angular/cache/21.2.19/fed-node-npm-template/vite/deps/es-module-shims.js",
+      "label": "es-module-shims",
+      "type": "file",
+      "file": ".angular/cache/21.2.19/fed-node-npm-template/vite/deps/es-module-shims.js",
+      "size": 1
+    },
+    {
+      "id": "file:.angular/cache/21.2.19/fed-node-npm-template/vite/deps/zone__js.js",
+      "label": "zone__js",
+      "type": "file",
+      "file": ".angular/cache/21.2.19/fed-node-npm-template/vite/deps/zone__js.js",
+      "size": 1
+    },
+    {
+      "id": "file:eslint.config.js",
+      "label": "eslint.config",
+      "type": "file",
+      "file": "eslint.config.js",
+      "size": 1
+    },
+    {
+      "id": "dir:root",
+      "label": "root",
+      "type": "dir",
+      "size": 10
+    },
+    {
+      "id": "file:federation.config.js",
+      "label": "federation.config",
+      "type": "file",
+      "file": "federation.config.js",
+      "size": 1
+    },
+    {
+      "id": "file:jest.config.js",
+      "label": "jest.config",
+      "type": "file",
+      "file": "jest.config.js",
+      "size": 1
+    },
+    {
+      "id": "file:mocks/backend.js",
+      "label": "backend",
+      "type": "file",
+      "file": "mocks/backend.js",
+      "size": 1
+    },
+    {
+      "id": "dir:mocks",
+      "label": "mocks",
+      "type": "dir",
+      "size": 4
+    },
+    {
+      "id": "file:mocks/scripts/postbuild.js",
+      "label": "postbuild",
+      "type": "file",
+      "file": "mocks/scripts/postbuild.js",
+      "size": 1
+    },
+    {
+      "id": "dir:mocks/scripts",
+      "label": "mocks/scripts",
+      "type": "dir",
+      "size": 2
+    },
+    {
+      "id": "file:mocks/serve/analytics.js",
+      "label": "analytics",
+      "type": "file",
+      "file": "mocks/serve/analytics.js",
+      "size": 1
+    },
+    {
+      "id": "dir:mocks/serve",
+      "label": "mocks/serve",
+      "type": "dir",
+      "size": 4
+    },
+    {
+      "id": "file:mocks/serve/crypto.js",
+      "label": "crypto",
+      "type": "file",
+      "file": "mocks/serve/crypto.js",
+      "size": 1
+    },
+    {
+      "id": "file:mocks/serve/native/bnc.js",
+      "label": "bnc",
+      "type": "file",
+      "file": "mocks/serve/native/bnc.js",
+      "size": 1
+    },
+    {
+      "id": "dir:mocks/serve/native",
+      "label": "mocks/serve/native",
+      "type": "dir",
+      "size": 11
+    },
+    {
+      "id": "file:mocks/serve/native/gps.js",
+      "label": "gps",
+      "type": "file",
+      "file": "mocks/serve/native/gps.js",
+      "size": 1
+    },
+    {
+      "id": "file:mocks/serve/native/login.js",
+      "label": "login",
+      "type": "file",
+      "file": "mocks/serve/native/login.js",
+      "size": 1
+    },
+    {
+      "id": "file:mocks/serve/native/remote-config.js",
+      "label": "remote-config",
+      "type": "file",
+      "file": "mocks/serve/native/remote-config.js",
+      "size": 1
+    },
+    {
+      "id": "file:mocks/serve/native/security-key.js",
+      "label": "security-key",
+      "type": "file",
+      "file": "mocks/serve/native/security-key.js",
+      "size": 1
+    },
+    {
+      "id": "file:mocks/serve/native/storage.js",
+      "label": "storage",
+      "type": "file",
+      "file": "mocks/serve/native/storage.js",
+      "size": 1
+    },
+    {
+      "id": "file:mocks/serve/native/threat.js",
+      "label": "threat",
+      "type": "file",
+      "file": "mocks/serve/native/threat.js",
+      "size": 1
+    },
+    {
+      "id": "file:mocks/serve/native/tracking.js",
+      "label": "tracking",
+      "type": "file",
+      "file": "mocks/serve/native/tracking.js",
+      "size": 1
+    },
+    {
+      "id": "file:mocks/serve/native/ui.js",
+      "label": "ui",
+      "type": "file",
+      "file": "mocks/serve/native/ui.js",
+      "size": 1
+    },
+    {
+      "id": "file:mocks/serve/native/virtual-id.js",
+      "label": "virtual-id",
+      "type": "file",
+      "file": "mocks/serve/native/virtual-id.js",
+      "size": 1
+    },
+    {
+      "id": "file:postBuild.js",
+      "label": "postBuild",
+      "type": "file",
+      "file": "postBuild.js",
+      "size": 1
+    },
+    {
+      "id": "file:setup-jest.ts",
+      "label": "setup-jest",
+      "type": "file",
+      "file": "setup-jest.ts",
+      "size": 1
+    },
+    {
+      "id": "file:src/app/app.component.spec.ts",
+      "label": "app.component.spec",
+      "type": "file",
+      "file": "src/app/app.component.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src/app",
+      "label": "src/app",
+      "type": "dir",
+      "size": 10
+    },
+    {
+      "id": "file:src/app/app.component.ts",
+      "label": "app.component",
+      "type": "file",
+      "file": "src/app/app.component.ts",
+      "size": 4
+    },
+    {
+      "id": "file:src/app/app.config.spec.ts",
+      "label": "app.config.spec",
+      "type": "file",
+      "file": "src/app/app.config.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "file:src/app/app.config.ts",
+      "label": "app.config",
+      "type": "file",
+      "file": "src/app/app.config.ts",
+      "size": 4
+    },
+    {
+      "id": "file:src/app/core/config/app-config.service.spec.ts",
+      "label": "app-config.service.spec",
+      "type": "file",
+      "file": "src/app/core/config/app-config.service.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src/app/core/config",
+      "label": "src/app/core/config",
+      "type": "dir",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/core/config/app-config.service.ts",
+      "label": "app-config.service",
+      "type": "file",
+      "file": "src/app/core/config/app-config.service.ts",
+      "size": 4
+    },
+    {
+      "id": "file:src/app/core/services/auth.service.spec.ts",
+      "label": "auth.service.spec",
+      "type": "file",
+      "file": "src/app/core/services/auth.service.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src/app/core/services",
+      "label": "src/app/core/services",
+      "type": "dir",
+      "size": 11
+    },
+    {
+      "id": "file:src/app/core/services/auth.service.ts",
+      "label": "auth.service",
+      "type": "file",
+      "file": "src/app/core/services/auth.service.ts",
+      "size": 5
+    },
+    {
+      "id": "file:src/app/core/services/http.service.spec.ts",
+      "label": "http.service.spec",
+      "type": "file",
+      "file": "src/app/core/services/http.service.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "file:src/app/core/services/http.service.ts",
+      "label": "http.service",
+      "type": "file",
+      "file": "src/app/core/services/http.service.ts",
+      "size": 2
+    },
+    {
+      "id": "file:src/app/core/services/loading.service.spec.ts",
+      "label": "loading.service.spec",
+      "type": "file",
+      "file": "src/app/core/services/loading.service.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "file:src/app/core/services/loading.service.ts",
+      "label": "loading.service",
+      "type": "file",
+      "file": "src/app/core/services/loading.service.ts",
+      "size": 4
+    },
+    {
+      "id": "file:src/app/core/services/monitoramento.service.spec.ts",
+      "label": "monitoramento.service.spec",
+      "type": "file",
+      "file": "src/app/core/services/monitoramento.service.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "file:src/app/core/services/monitoramento.service.ts",
+      "label": "monitoramento.service",
+      "type": "file",
+      "file": "src/app/core/services/monitoramento.service.ts",
+      "size": 2
+    },
+    {
+      "id": "file:src/app/core/services/router.service.spec.ts",
+      "label": "router.service.spec",
+      "type": "file",
+      "file": "src/app/core/services/router.service.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "file:src/app/core/services/router.service.ts",
+      "label": "router.service",
+      "type": "file",
+      "file": "src/app/core/services/router.service.ts",
+      "size": 4
+    },
+    {
+      "id": "file:src/app/domain/mappers/acompanhamento.mapper.ts",
+      "label": "acompanhamento.mapper",
+      "type": "file",
+      "file": "src/app/domain/mappers/acompanhamento.mapper.ts",
+      "size": 2
+    },
+    {
+      "id": "dir:src/app/domain/mappers",
+      "label": "src/app/domain/mappers",
+      "type": "dir",
+      "size": 5
+    },
+    {
+      "id": "file:src/app/domain/mappers/contrato.mapper.ts",
+      "label": "contrato.mapper",
+      "type": "file",
+      "file": "src/app/domain/mappers/contrato.mapper.ts",
+      "size": 2
+    },
+    {
+      "id": "file:src/app/domain/mappers/dados-cliente.mapper.ts",
+      "label": "dados-cliente.mapper",
+      "type": "file",
+      "file": "src/app/domain/mappers/dados-cliente.mapper.ts",
+      "size": 1
+    },
+    {
+      "id": "file:src/app/domain/mappers/parcelas.mapper.ts",
+      "label": "parcelas.mapper",
+      "type": "file",
+      "file": "src/app/domain/mappers/parcelas.mapper.ts",
+      "size": 2
+    },
+    {
+      "id": "file:src/app/domain/models/dto/acompanhamento.dto.ts",
+      "label": "acompanhamento.dto",
+      "type": "file",
+      "file": "src/app/domain/models/dto/acompanhamento.dto.ts",
+      "size": 3
+    },
+    {
+      "id": "dir:src/app/domain/models/dto",
+      "label": "src/app/domain/models/dto",
+      "type": "dir",
+      "size": 8
+    },
+    {
+      "id": "file:src/app/domain/models/dto/api-response.dto.ts",
+      "label": "api-response.dto",
+      "type": "file",
+      "file": "src/app/domain/models/dto/api-response.dto.ts",
+      "size": 10
+    },
+    {
+      "id": "file:src/app/domain/models/dto/boleto-entrada.dto.ts",
+      "label": "boleto-entrada.dto",
+      "type": "file",
+      "file": "src/app/domain/models/dto/boleto-entrada.dto.ts",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/domain/models/dto/contrato.dto.ts",
+      "label": "contrato.dto",
+      "type": "file",
+      "file": "src/app/domain/models/dto/contrato.dto.ts",
+      "size": 4
+    },
+    {
+      "id": "file:src/app/domain/models/dto/dados-cliente-bff2.dto.ts",
+      "label": "dados-cliente-bff2.dto",
+      "type": "file",
+      "file": "src/app/domain/models/dto/dados-cliente-bff2.dto.ts",
+      "size": 2
+    },
+    {
+      "id": "file:src/app/domain/models/dto/documentos-contrato.dto.ts",
+      "label": "documentos-contrato.dto",
+      "type": "file",
+      "file": "src/app/domain/models/dto/documentos-contrato.dto.ts",
+      "size": 4
+    },
+    {
+      "id": "file:src/app/domain/models/dto/parcelas.dto.ts",
+      "label": "parcelas.dto",
+      "type": "file",
+      "file": "src/app/domain/models/dto/parcelas.dto.ts",
+      "size": 5
+    },
+    {
+      "id": "file:src/app/domain/models/enums/status-contrato.enum.ts",
+      "label": "status-contrato.enum",
+      "type": "file",
+      "file": "src/app/domain/models/enums/status-contrato.enum.ts",
+      "size": 6
+    },
+    {
+      "id": "dir:src/app/domain/models/enums",
+      "label": "src/app/domain/models/enums",
+      "type": "dir",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/domain/models/enums/status-parcela.enum.ts",
+      "label": "status-parcela.enum",
+      "type": "file",
+      "file": "src/app/domain/models/enums/status-parcela.enum.ts",
+      "size": 5
+    },
+    {
+      "id": "file:src/app/domain/models/modelos/acompanhamento.model.ts",
+      "label": "acompanhamento.model",
+      "type": "file",
+      "file": "src/app/domain/models/modelos/acompanhamento.model.ts",
+      "size": 3
+    },
+    {
+      "id": "dir:src/app/domain/models/modelos",
+      "label": "src/app/domain/models/modelos",
+      "type": "dir",
+      "size": 6
+    },
+    {
+      "id": "file:src/app/domain/models/modelos/boleto.model.ts",
+      "label": "boleto.model",
+      "type": "file",
+      "file": "src/app/domain/models/modelos/boleto.model.ts",
+      "size": 2
+    },
+    {
+      "id": "file:src/app/domain/models/modelos/cliente.model.ts",
+      "label": "cliente.model",
+      "type": "file",
+      "file": "src/app/domain/models/modelos/cliente.model.ts",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/domain/models/modelos/contrato.model.ts",
+      "label": "contrato.model",
+      "type": "file",
+      "file": "src/app/domain/models/modelos/contrato.model.ts",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/domain/models/modelos/parcelas.model.ts",
+      "label": "parcelas.model",
+      "type": "file",
+      "file": "src/app/domain/models/modelos/parcelas.model.ts",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/domain/services/acompanhamento.service.spec.ts",
+      "label": "acompanhamento.service.spec",
+      "type": "file",
+      "file": "src/app/domain/services/acompanhamento.service.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src/app/domain/services",
+      "label": "src/app/domain/services",
+      "type": "dir",
+      "size": 13
+    },
+    {
+      "id": "file:src/app/domain/services/acompanhamento.service.ts",
+      "label": "acompanhamento.service",
+      "type": "file",
+      "file": "src/app/domain/services/acompanhamento.service.ts",
+      "size": 4
+    },
+    {
+      "id": "file:src/app/domain/services/boleto.service.spec.ts",
+      "label": "boleto.service.spec",
+      "type": "file",
+      "file": "src/app/domain/services/boleto.service.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "file:src/app/domain/services/boleto.service.ts",
+      "label": "boleto.service",
+      "type": "file",
+      "file": "src/app/domain/services/boleto.service.ts",
+      "size": 4
+    },
+    {
+      "id": "file:src/app/domain/services/contrato-documentos.service.spec.ts",
+      "label": "contrato-documentos.service.spec",
+      "type": "file",
+      "file": "src/app/domain/services/contrato-documentos.service.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "file:src/app/domain/services/contrato-documentos.service.ts",
+      "label": "contrato-documentos.service",
+      "type": "file",
+      "file": "src/app/domain/services/contrato-documentos.service.ts",
+      "size": 4
+    },
+    {
+      "id": "file:src/app/domain/services/contrato.service.spec.ts",
+      "label": "contrato.service.spec",
+      "type": "file",
+      "file": "src/app/domain/services/contrato.service.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "file:src/app/domain/services/contrato.service.ts",
+      "label": "contrato.service",
+      "type": "file",
+      "file": "src/app/domain/services/contrato.service.ts",
+      "size": 4
+    },
+    {
+      "id": "file:src/app/domain/services/dados-cliente.service.spec.ts",
+      "label": "dados-cliente.service.spec",
+      "type": "file",
+      "file": "src/app/domain/services/dados-cliente.service.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "file:src/app/domain/services/dados-cliente.service.ts",
+      "label": "dados-cliente.service",
+      "type": "file",
+      "file": "src/app/domain/services/dados-cliente.service.ts",
+      "size": 4
+    },
+    {
+      "id": "file:src/app/domain/services/parcelas.service.spec.ts",
+      "label": "parcelas.service.spec",
+      "type": "file",
+      "file": "src/app/domain/services/parcelas.service.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "file:src/app/domain/services/parcelas.service.ts",
+      "label": "parcelas.service",
+      "type": "file",
+      "file": "src/app/domain/services/parcelas.service.ts",
+      "size": 4
+    },
+    {
+      "id": "file:src/app/domain/store/renegociacao.store.spec.ts",
+      "label": "renegociacao.store.spec",
+      "type": "file",
+      "file": "src/app/domain/store/renegociacao.store.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src/app/domain/store",
+      "label": "src/app/domain/store",
+      "type": "dir",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/domain/store/renegociacao.store.ts",
+      "label": "renegociacao.store",
+      "type": "file",
+      "file": "src/app/domain/store/renegociacao.store.ts",
+      "size": 2
+    },
+    {
+      "id": "file:src/app/domain/ui/card-dados-cliente/card-dados-cliente.component.spec.ts",
+      "label": "card-dados-cliente.component.spec",
+      "type": "file",
+      "file": "src/app/domain/ui/card-dados-cliente/card-dados-cliente.component.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src/app/domain/ui/card-dados-cliente",
+      "label": "src/app/domain/ui/card-dados-cliente",
+      "type": "dir",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/domain/ui/card-dados-cliente/card-dados-cliente.component.ts",
+      "label": "card-dados-cliente.component",
+      "type": "file",
+      "file": "src/app/domain/ui/card-dados-cliente/card-dados-cliente.component.ts",
+      "size": 2
+    },
+    {
+      "id": "file:src/app/domain/ui/card-dados-do-pagamento/card-dados-do-pagamento.component.spec.ts",
+      "label": "card-dados-do-pagamento.component.spec",
+      "type": "file",
+      "file": "src/app/domain/ui/card-dados-do-pagamento/card-dados-do-pagamento.component.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src/app/domain/ui/card-dados-do-pagamento",
+      "label": "src/app/domain/ui/card-dados-do-pagamento",
+      "type": "dir",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/domain/ui/card-dados-do-pagamento/card-dados-do-pagamento.component.ts",
+      "label": "card-dados-do-pagamento.component",
+      "type": "file",
+      "file": "src/app/domain/ui/card-dados-do-pagamento/card-dados-do-pagamento.component.ts",
+      "size": 2
+    },
+    {
+      "id": "file:src/app/domain/ui/card-pagamento-das-parcelas/card-pagamento-das-parcelas.component.spec.ts",
+      "label": "card-pagamento-das-parcelas.component.spec",
+      "type": "file",
+      "file": "src/app/domain/ui/card-pagamento-das-parcelas/card-pagamento-das-parcelas.component.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src/app/domain/ui/card-pagamento-das-parcelas",
+      "label": "src/app/domain/ui/card-pagamento-das-parcelas",
+      "type": "dir",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/domain/ui/card-pagamento-das-parcelas/card-pagamento-das-parcelas.component.ts",
+      "label": "card-pagamento-das-parcelas.component",
+      "type": "file",
+      "file": "src/app/domain/ui/card-pagamento-das-parcelas/card-pagamento-das-parcelas.component.ts",
+      "size": 2
+    },
+    {
+      "id": "file:src/app/domain/ui/card-segunda-via-documentos/card-segunda-via-documentos.component.spec.ts",
+      "label": "card-segunda-via-documentos.component.spec",
+      "type": "file",
+      "file": "src/app/domain/ui/card-segunda-via-documentos/card-segunda-via-documentos.component.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src/app/domain/ui/card-segunda-via-documentos",
+      "label": "src/app/domain/ui/card-segunda-via-documentos",
+      "type": "dir",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/domain/ui/card-segunda-via-documentos/card-segunda-via-documentos.component.ts",
+      "label": "card-segunda-via-documentos.component",
+      "type": "file",
+      "file": "src/app/domain/ui/card-segunda-via-documentos/card-segunda-via-documentos.component.ts",
+      "size": 2
+    },
+    {
+      "id": "file:src/app/domain/ui/card-status-renegociacao/card-status-renegociacao.component.spec.ts",
+      "label": "card-status-renegociacao.component.spec",
+      "type": "file",
+      "file": "src/app/domain/ui/card-status-renegociacao/card-status-renegociacao.component.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src/app/domain/ui/card-status-renegociacao",
+      "label": "src/app/domain/ui/card-status-renegociacao",
+      "type": "dir",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/domain/ui/card-status-renegociacao/card-status-renegociacao.component.ts",
+      "label": "card-status-renegociacao.component",
+      "type": "file",
+      "file": "src/app/domain/ui/card-status-renegociacao/card-status-renegociacao.component.ts",
+      "size": 2
+    },
+    {
+      "id": "file:src/app/domain/ui/card-valores-da-renegociacao/card-valores-da-renegociacao.component.spec.ts",
+      "label": "card-valores-da-renegociacao.component.spec",
+      "type": "file",
+      "file": "src/app/domain/ui/card-valores-da-renegociacao/card-valores-da-renegociacao.component.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src/app/domain/ui/card-valores-da-renegociacao",
+      "label": "src/app/domain/ui/card-valores-da-renegociacao",
+      "type": "dir",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/domain/ui/card-valores-da-renegociacao/card-valores-da-renegociacao.component.ts",
+      "label": "card-valores-da-renegociacao.component",
+      "type": "file",
+      "file": "src/app/domain/ui/card-valores-da-renegociacao/card-valores-da-renegociacao.component.ts",
+      "size": 2
+    },
+    {
+      "id": "file:src/app/feature/acompanhamento/pages/assinatura-documentos/assinatura-documentos.component.spec.ts",
+      "label": "assinatura-documentos.component.spec",
+      "type": "file",
+      "file": "src/app/feature/acompanhamento/pages/assinatura-documentos/assinatura-documentos.component.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src/app/feature/acompanhamento/pages/assinatura-documentos",
+      "label": "src/app/feature/acompanhamento/pages/assinatura-documentos",
+      "type": "dir",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/feature/acompanhamento/pages/assinatura-documentos/assinatura-documentos.component.ts",
+      "label": "assinatura-documentos.component",
+      "type": "file",
+      "file": "src/app/feature/acompanhamento/pages/assinatura-documentos/assinatura-documentos.component.ts",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/feature/acompanhamento/pages/detalhes-contrato/detalhes-contrato.component.spec.ts",
+      "label": "detalhes-contrato.component.spec",
+      "type": "file",
+      "file": "src/app/feature/acompanhamento/pages/detalhes-contrato/detalhes-contrato.component.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src/app/feature/acompanhamento/pages/detalhes-contrato",
+      "label": "src/app/feature/acompanhamento/pages/detalhes-contrato",
+      "type": "dir",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/feature/acompanhamento/pages/detalhes-contrato/detalhes-contrato.component.ts",
+      "label": "detalhes-contrato.component",
+      "type": "file",
+      "file": "src/app/feature/acompanhamento/pages/detalhes-contrato/detalhes-contrato.component.ts",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/feature/acompanhamento/pages/pagamento-da-entrada/pagamento-da-entrada.component.spec.ts",
+      "label": "pagamento-da-entrada.component.spec",
+      "type": "file",
+      "file": "src/app/feature/acompanhamento/pages/pagamento-da-entrada/pagamento-da-entrada.component.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src/app/feature/acompanhamento/pages/pagamento-da-entrada",
+      "label": "src/app/feature/acompanhamento/pages/pagamento-da-entrada",
+      "type": "dir",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/feature/acompanhamento/pages/pagamento-da-entrada/pagamento-da-entrada.component.ts",
+      "label": "pagamento-da-entrada.component",
+      "type": "file",
+      "file": "src/app/feature/acompanhamento/pages/pagamento-da-entrada/pagamento-da-entrada.component.ts",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/feature/dashboard/pages/dashboard/dashboard.component.spec.ts",
+      "label": "dashboard.component.spec",
+      "type": "file",
+      "file": "src/app/feature/dashboard/pages/dashboard/dashboard.component.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src/app/feature/dashboard/pages/dashboard",
+      "label": "src/app/feature/dashboard/pages/dashboard",
+      "type": "dir",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/feature/dashboard/pages/dashboard/dashboard.component.ts",
+      "label": "dashboard.component",
+      "type": "file",
+      "file": "src/app/feature/dashboard/pages/dashboard/dashboard.component.ts",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/shared/components/bsc-card/bsc-card.component.spec.ts",
+      "label": "bsc-card.component.spec",
+      "type": "file",
+      "file": "src/app/shared/components/bsc-card/bsc-card.component.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src/app/shared/components/bsc-card",
+      "label": "src/app/shared/components/bsc-card",
+      "type": "dir",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/shared/components/bsc-card/bsc-card.component.ts",
+      "label": "bsc-card.component",
+      "type": "file",
+      "file": "src/app/shared/components/bsc-card/bsc-card.component.ts",
+      "size": 4
+    },
+    {
+      "id": "file:src/app/shared/components/bsc-table/bsc-table.component.spec.ts",
+      "label": "bsc-table.component.spec",
+      "type": "file",
+      "file": "src/app/shared/components/bsc-table/bsc-table.component.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src/app/shared/components/bsc-table",
+      "label": "src/app/shared/components/bsc-table",
+      "type": "dir",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/shared/components/bsc-table/bsc-table.component.ts",
+      "label": "bsc-table.component",
+      "type": "file",
+      "file": "src/app/shared/components/bsc-table/bsc-table.component.ts",
+      "size": 2
+    },
+    {
+      "id": "file:src/app/shared/components/input-select/input-select.component.spec.ts",
+      "label": "input-select.component.spec",
+      "type": "file",
+      "file": "src/app/shared/components/input-select/input-select.component.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src/app/shared/components/input-select",
+      "label": "src/app/shared/components/input-select",
+      "type": "dir",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/shared/components/input-select/input-select.component.ts",
+      "label": "input-select.component",
+      "type": "file",
+      "file": "src/app/shared/components/input-select/input-select.component.ts",
+      "size": 2
+    },
+    {
+      "id": "file:src/app/shared/components/menu-cabecalho/menu-cabecalho.component.spec.ts",
+      "label": "menu-cabecalho.component.spec",
+      "type": "file",
+      "file": "src/app/shared/components/menu-cabecalho/menu-cabecalho.component.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src/app/shared/components/menu-cabecalho",
+      "label": "src/app/shared/components/menu-cabecalho",
+      "type": "dir",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/shared/components/menu-cabecalho/menu-cabecalho.component.ts",
+      "label": "menu-cabecalho.component",
+      "type": "file",
+      "file": "src/app/shared/components/menu-cabecalho/menu-cabecalho.component.ts",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/shared/components/paginacao/paginacao.component.spec.ts",
+      "label": "paginacao.component.spec",
+      "type": "file",
+      "file": "src/app/shared/components/paginacao/paginacao.component.spec.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src/app/shared/components/paginacao",
+      "label": "src/app/shared/components/paginacao",
+      "type": "dir",
+      "size": 3
+    },
+    {
+      "id": "file:src/app/shared/components/paginacao/paginacao.component.ts",
+      "label": "paginacao.component",
+      "type": "file",
+      "file": "src/app/shared/components/paginacao/paginacao.component.ts",
+      "size": 2
+    },
+    {
+      "id": "file:src/app/shared/pipes/cep.pipe.ts",
+      "label": "cep.pipe",
+      "type": "file",
+      "file": "src/app/shared/pipes/cep.pipe.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src/app/shared/pipes",
+      "label": "src/app/shared/pipes",
+      "type": "dir",
+      "size": 5
+    },
+    {
+      "id": "file:src/app/shared/pipes/cpf-cnpj.pipe.ts",
+      "label": "cpf-cnpj.pipe",
+      "type": "file",
+      "file": "src/app/shared/pipes/cpf-cnpj.pipe.ts",
+      "size": 1
+    },
+    {
+      "id": "file:src/app/shared/pipes/moeda.pipe.ts",
+      "label": "moeda.pipe",
+      "type": "file",
+      "file": "src/app/shared/pipes/moeda.pipe.ts",
+      "size": 1
+    },
+    {
+      "id": "file:src/app/shared/pipes/telefone.pipe.ts",
+      "label": "telefone.pipe",
+      "type": "file",
+      "file": "src/app/shared/pipes/telefone.pipe.ts",
+      "size": 1
+    },
+    {
+      "id": "file:src/app/shared/utils/boleto.util.ts",
+      "label": "boleto.util",
+      "type": "file",
+      "file": "src/app/shared/utils/boleto.util.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src/app/shared/utils",
+      "label": "src/app/shared/utils",
+      "type": "dir",
+      "size": 2
+    },
+    {
+      "id": "file:src/app/web-component.module.ts",
+      "label": "web-component.module",
+      "type": "file",
+      "file": "src/app/web-component.module.ts",
+      "size": 2
+    },
+    {
+      "id": "file:src/assets/config/app.config.js",
+      "label": "app.config",
+      "type": "file",
+      "file": "src/assets/config/app.config.js",
+      "size": 1
+    },
+    {
+      "id": "dir:src/assets/config",
+      "label": "src/assets/config",
+      "type": "dir",
+      "size": 2
+    },
+    {
+      "id": "file:src/bootstrap-webcomponent.ts",
+      "label": "bootstrap-webcomponent",
+      "type": "file",
+      "file": "src/bootstrap-webcomponent.ts",
+      "size": 1
+    },
+    {
+      "id": "dir:src",
+      "label": "src",
+      "type": "dir",
+      "size": 6
+    },
+    {
+      "id": "file:src/bootstrap.ts",
+      "label": "bootstrap",
+      "type": "file",
+      "file": "src/bootstrap.ts",
+      "size": 1
+    },
+    {
+      "id": "file:src/main.ts",
+      "label": "main",
+      "type": "file",
+      "file": "src/main.ts",
+      "size": 1
+    },
+    {
+      "id": "file:tree.js",
+      "label": "tree",
+      "type": "file",
+      "file": "tree.js",
+      "size": 1
+    },
+    {
+      "id": "dir:.angular/cache/21.2.19/fed-node-npm-template/vite",
+      "label": ".angular/cache/21.2.19/fed-node-npm-template/vite",
+      "type": "dir",
+      "size": 2
+    },
+    {
+      "id": "dir:.angular/cache/21.2.19/fed-node-npm-template",
+      "label": ".angular/cache/21.2.19/fed-node-npm-template",
+      "type": "dir",
+      "size": 2
+    },
+    {
+      "id": "dir:.angular/cache/21.2.19",
+      "label": ".angular/cache/21.2.19",
+      "type": "dir",
+      "size": 2
+    },
+    {
+      "id": "dir:.angular/cache",
+      "label": ".angular/cache",
+      "type": "dir",
+      "size": 2
+    },
+    {
+      "id": "dir:.angular",
+      "label": ".angular",
+      "type": "dir",
+      "size": 2
+    },
+    {
+      "id": "dir:src/app/core",
+      "label": "src/app/core",
+      "type": "dir",
+      "size": 3
+    },
+    {
+      "id": "dir:src/app/domain",
+      "label": "src/app/domain",
+      "type": "dir",
+      "size": 6
+    },
+    {
+      "id": "dir:src/app/domain/models",
+      "label": "src/app/domain/models",
+      "type": "dir",
+      "size": 4
+    },
+    {
+      "id": "dir:src/app/domain/ui",
+      "label": "src/app/domain/ui",
+      "type": "dir",
+      "size": 7
+    },
+    {
+      "id": "dir:src/app/feature/acompanhamento/pages",
+      "label": "src/app/feature/acompanhamento/pages",
+      "type": "dir",
+      "size": 4
+    },
+    {
+      "id": "dir:src/app/feature/acompanhamento",
+      "label": "src/app/feature/acompanhamento",
+      "type": "dir",
+      "size": 2
+    },
+    {
+      "id": "dir:src/app/feature",
+      "label": "src/app/feature",
+      "type": "dir",
+      "size": 3
+    },
+    {
+      "id": "dir:src/app/feature/dashboard/pages",
+      "label": "src/app/feature/dashboard/pages",
+      "type": "dir",
+      "size": 2
+    },
+    {
+      "id": "dir:src/app/feature/dashboard",
+      "label": "src/app/feature/dashboard",
+      "type": "dir",
+      "size": 2
+    },
+    {
+      "id": "dir:src/app/shared/components",
+      "label": "src/app/shared/components",
+      "type": "dir",
+      "size": 6
+    },
+    {
+      "id": "dir:src/app/shared",
+      "label": "src/app/shared",
+      "type": "dir",
+      "size": 4
+    },
+    {
+      "id": "dir:src/assets",
+      "label": "src/assets",
+      "type": "dir",
+      "size": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:.angular/cache/21.2.19/fed-node-npm-template/vite/deps/@angular-architects_native-federation.js",
+      "target": "dir:.angular/cache/21.2.19/fed-node-npm-template/vite/deps",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:.angular/cache/21.2.19/fed-node-npm-template/vite/deps/chunk-Y5RQAIA6.js",
+      "target": "dir:.angular/cache/21.2.19/fed-node-npm-template/vite/deps",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:.angular/cache/21.2.19/fed-node-npm-template/vite/deps/es-module-shims.js",
+      "target": "dir:.angular/cache/21.2.19/fed-node-npm-template/vite/deps",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:.angular/cache/21.2.19/fed-node-npm-template/vite/deps/zone__js.js",
+      "target": "dir:.angular/cache/21.2.19/fed-node-npm-template/vite/deps",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:eslint.config.js",
+      "target": "dir:root",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:federation.config.js",
+      "target": "dir:root",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:jest.config.js",
+      "target": "dir:root",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:mocks/backend.js",
+      "target": "dir:mocks",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:mocks/scripts/postbuild.js",
+      "target": "dir:mocks/scripts",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:mocks/serve/analytics.js",
+      "target": "dir:mocks/serve",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:mocks/serve/crypto.js",
+      "target": "dir:mocks/serve",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:mocks/serve/native/bnc.js",
+      "target": "dir:mocks/serve/native",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:mocks/serve/native/gps.js",
+      "target": "dir:mocks/serve/native",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:mocks/serve/native/login.js",
+      "target": "dir:mocks/serve/native",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:mocks/serve/native/remote-config.js",
+      "target": "dir:mocks/serve/native",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:mocks/serve/native/security-key.js",
+      "target": "dir:mocks/serve/native",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:mocks/serve/native/storage.js",
+      "target": "dir:mocks/serve/native",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:mocks/serve/native/threat.js",
+      "target": "dir:mocks/serve/native",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:mocks/serve/native/tracking.js",
+      "target": "dir:mocks/serve/native",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:mocks/serve/native/ui.js",
+      "target": "dir:mocks/serve/native",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:mocks/serve/native/virtual-id.js",
+      "target": "dir:mocks/serve/native",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:postBuild.js",
+      "target": "dir:root",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:setup-jest.ts",
+      "target": "dir:root",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/app.component.spec.ts",
+      "target": "dir:src/app",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/app.component.ts",
+      "target": "dir:src/app",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/app.config.spec.ts",
+      "target": "dir:src/app",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/app.config.ts",
+      "target": "dir:src/app",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/config/app-config.service.spec.ts",
+      "target": "dir:src/app/core/config",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/config/app-config.service.ts",
+      "target": "dir:src/app/core/config",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/services/auth.service.spec.ts",
+      "target": "dir:src/app/core/services",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/services/auth.service.ts",
+      "target": "dir:src/app/core/services",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/services/http.service.spec.ts",
+      "target": "dir:src/app/core/services",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/services/http.service.ts",
+      "target": "dir:src/app/core/services",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/services/loading.service.spec.ts",
+      "target": "dir:src/app/core/services",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/services/loading.service.ts",
+      "target": "dir:src/app/core/services",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/services/monitoramento.service.spec.ts",
+      "target": "dir:src/app/core/services",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/services/monitoramento.service.ts",
+      "target": "dir:src/app/core/services",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/services/router.service.spec.ts",
+      "target": "dir:src/app/core/services",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/services/router.service.ts",
+      "target": "dir:src/app/core/services",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/mappers/acompanhamento.mapper.ts",
+      "target": "dir:src/app/domain/mappers",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/mappers/contrato.mapper.ts",
+      "target": "dir:src/app/domain/mappers",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/mappers/dados-cliente.mapper.ts",
+      "target": "dir:src/app/domain/mappers",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/mappers/parcelas.mapper.ts",
+      "target": "dir:src/app/domain/mappers",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/models/dto/acompanhamento.dto.ts",
+      "target": "dir:src/app/domain/models/dto",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/models/dto/api-response.dto.ts",
+      "target": "dir:src/app/domain/models/dto",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/models/dto/boleto-entrada.dto.ts",
+      "target": "dir:src/app/domain/models/dto",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/models/dto/contrato.dto.ts",
+      "target": "dir:src/app/domain/models/dto",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/models/dto/dados-cliente-bff2.dto.ts",
+      "target": "dir:src/app/domain/models/dto",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/models/dto/documentos-contrato.dto.ts",
+      "target": "dir:src/app/domain/models/dto",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/models/dto/parcelas.dto.ts",
+      "target": "dir:src/app/domain/models/dto",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/models/enums/status-contrato.enum.ts",
+      "target": "dir:src/app/domain/models/enums",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/models/enums/status-parcela.enum.ts",
+      "target": "dir:src/app/domain/models/enums",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/models/modelos/acompanhamento.model.ts",
+      "target": "dir:src/app/domain/models/modelos",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/models/modelos/boleto.model.ts",
+      "target": "dir:src/app/domain/models/modelos",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/models/modelos/cliente.model.ts",
+      "target": "dir:src/app/domain/models/modelos",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/models/modelos/contrato.model.ts",
+      "target": "dir:src/app/domain/models/modelos",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/models/modelos/parcelas.model.ts",
+      "target": "dir:src/app/domain/models/modelos",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/acompanhamento.service.spec.ts",
+      "target": "dir:src/app/domain/services",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/acompanhamento.service.ts",
+      "target": "dir:src/app/domain/services",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/boleto.service.spec.ts",
+      "target": "dir:src/app/domain/services",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/boleto.service.ts",
+      "target": "dir:src/app/domain/services",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/contrato-documentos.service.spec.ts",
+      "target": "dir:src/app/domain/services",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/contrato-documentos.service.ts",
+      "target": "dir:src/app/domain/services",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/contrato.service.spec.ts",
+      "target": "dir:src/app/domain/services",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/contrato.service.ts",
+      "target": "dir:src/app/domain/services",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/dados-cliente.service.spec.ts",
+      "target": "dir:src/app/domain/services",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/dados-cliente.service.ts",
+      "target": "dir:src/app/domain/services",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/parcelas.service.spec.ts",
+      "target": "dir:src/app/domain/services",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/parcelas.service.ts",
+      "target": "dir:src/app/domain/services",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.spec.ts",
+      "target": "dir:src/app/domain/store",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.ts",
+      "target": "dir:src/app/domain/store",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/ui/card-dados-cliente/card-dados-cliente.component.spec.ts",
+      "target": "dir:src/app/domain/ui/card-dados-cliente",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/ui/card-dados-cliente/card-dados-cliente.component.ts",
+      "target": "dir:src/app/domain/ui/card-dados-cliente",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/ui/card-dados-do-pagamento/card-dados-do-pagamento.component.spec.ts",
+      "target": "dir:src/app/domain/ui/card-dados-do-pagamento",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/ui/card-dados-do-pagamento/card-dados-do-pagamento.component.ts",
+      "target": "dir:src/app/domain/ui/card-dados-do-pagamento",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/ui/card-pagamento-das-parcelas/card-pagamento-das-parcelas.component.spec.ts",
+      "target": "dir:src/app/domain/ui/card-pagamento-das-parcelas",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/ui/card-pagamento-das-parcelas/card-pagamento-das-parcelas.component.ts",
+      "target": "dir:src/app/domain/ui/card-pagamento-das-parcelas",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/ui/card-segunda-via-documentos/card-segunda-via-documentos.component.spec.ts",
+      "target": "dir:src/app/domain/ui/card-segunda-via-documentos",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/ui/card-segunda-via-documentos/card-segunda-via-documentos.component.ts",
+      "target": "dir:src/app/domain/ui/card-segunda-via-documentos",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/ui/card-status-renegociacao/card-status-renegociacao.component.spec.ts",
+      "target": "dir:src/app/domain/ui/card-status-renegociacao",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/ui/card-status-renegociacao/card-status-renegociacao.component.ts",
+      "target": "dir:src/app/domain/ui/card-status-renegociacao",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/ui/card-valores-da-renegociacao/card-valores-da-renegociacao.component.spec.ts",
+      "target": "dir:src/app/domain/ui/card-valores-da-renegociacao",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/ui/card-valores-da-renegociacao/card-valores-da-renegociacao.component.ts",
+      "target": "dir:src/app/domain/ui/card-valores-da-renegociacao",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/feature/acompanhamento/pages/assinatura-documentos/assinatura-documentos.component.spec.ts",
+      "target": "dir:src/app/feature/acompanhamento/pages/assinatura-documentos",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/feature/acompanhamento/pages/assinatura-documentos/assinatura-documentos.component.ts",
+      "target": "dir:src/app/feature/acompanhamento/pages/assinatura-documentos",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/feature/acompanhamento/pages/detalhes-contrato/detalhes-contrato.component.spec.ts",
+      "target": "dir:src/app/feature/acompanhamento/pages/detalhes-contrato",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/feature/acompanhamento/pages/detalhes-contrato/detalhes-contrato.component.ts",
+      "target": "dir:src/app/feature/acompanhamento/pages/detalhes-contrato",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/feature/acompanhamento/pages/pagamento-da-entrada/pagamento-da-entrada.component.spec.ts",
+      "target": "dir:src/app/feature/acompanhamento/pages/pagamento-da-entrada",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/feature/acompanhamento/pages/pagamento-da-entrada/pagamento-da-entrada.component.ts",
+      "target": "dir:src/app/feature/acompanhamento/pages/pagamento-da-entrada",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/feature/dashboard/pages/dashboard/dashboard.component.spec.ts",
+      "target": "dir:src/app/feature/dashboard/pages/dashboard",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/feature/dashboard/pages/dashboard/dashboard.component.ts",
+      "target": "dir:src/app/feature/dashboard/pages/dashboard",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shared/components/bsc-card/bsc-card.component.spec.ts",
+      "target": "dir:src/app/shared/components/bsc-card",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shared/components/bsc-card/bsc-card.component.ts",
+      "target": "dir:src/app/shared/components/bsc-card",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shared/components/bsc-table/bsc-table.component.spec.ts",
+      "target": "dir:src/app/shared/components/bsc-table",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shared/components/bsc-table/bsc-table.component.ts",
+      "target": "dir:src/app/shared/components/bsc-table",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shared/components/input-select/input-select.component.spec.ts",
+      "target": "dir:src/app/shared/components/input-select",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shared/components/input-select/input-select.component.ts",
+      "target": "dir:src/app/shared/components/input-select",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shared/components/menu-cabecalho/menu-cabecalho.component.spec.ts",
+      "target": "dir:src/app/shared/components/menu-cabecalho",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shared/components/menu-cabecalho/menu-cabecalho.component.ts",
+      "target": "dir:src/app/shared/components/menu-cabecalho",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shared/components/paginacao/paginacao.component.spec.ts",
+      "target": "dir:src/app/shared/components/paginacao",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shared/components/paginacao/paginacao.component.ts",
+      "target": "dir:src/app/shared/components/paginacao",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shared/pipes/cep.pipe.ts",
+      "target": "dir:src/app/shared/pipes",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shared/pipes/cpf-cnpj.pipe.ts",
+      "target": "dir:src/app/shared/pipes",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shared/pipes/moeda.pipe.ts",
+      "target": "dir:src/app/shared/pipes",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shared/pipes/telefone.pipe.ts",
+      "target": "dir:src/app/shared/pipes",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shared/utils/boleto.util.ts",
+      "target": "dir:src/app/shared/utils",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/web-component.module.ts",
+      "target": "dir:src/app",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/assets/config/app.config.js",
+      "target": "dir:src/assets/config",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/bootstrap-webcomponent.ts",
+      "target": "dir:src",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/bootstrap.ts",
+      "target": "dir:src",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:src/main.ts",
+      "target": "dir:src",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "file:tree.js",
+      "target": "dir:root",
+      "type": "in-dir",
+      "weight": 1
+    },
+    {
+      "source": "dir:.angular/cache/21.2.19/fed-node-npm-template/vite/deps",
+      "target": "dir:.angular/cache/21.2.19/fed-node-npm-template/vite",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:.angular/cache/21.2.19/fed-node-npm-template/vite",
+      "target": "dir:.angular/cache/21.2.19/fed-node-npm-template",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:.angular/cache/21.2.19/fed-node-npm-template",
+      "target": "dir:.angular/cache/21.2.19",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:.angular/cache/21.2.19",
+      "target": "dir:.angular/cache",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:.angular/cache",
+      "target": "dir:.angular",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:.angular",
+      "target": "dir:root",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:mocks",
+      "target": "dir:root",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:mocks/scripts",
+      "target": "dir:mocks",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:mocks/serve",
+      "target": "dir:mocks",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:mocks/serve/native",
+      "target": "dir:mocks/serve",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app",
+      "target": "dir:src",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src",
+      "target": "dir:root",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/core/config",
+      "target": "dir:src/app/core",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/core",
+      "target": "dir:src/app",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/core/services",
+      "target": "dir:src/app/core",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/domain/mappers",
+      "target": "dir:src/app/domain",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/domain",
+      "target": "dir:src/app",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/domain/models/dto",
+      "target": "dir:src/app/domain/models",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/domain/models",
+      "target": "dir:src/app/domain",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/domain/models/enums",
+      "target": "dir:src/app/domain/models",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/domain/models/modelos",
+      "target": "dir:src/app/domain/models",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/domain/services",
+      "target": "dir:src/app/domain",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/domain/store",
+      "target": "dir:src/app/domain",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/domain/ui/card-dados-cliente",
+      "target": "dir:src/app/domain/ui",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/domain/ui",
+      "target": "dir:src/app/domain",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/domain/ui/card-dados-do-pagamento",
+      "target": "dir:src/app/domain/ui",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/domain/ui/card-pagamento-das-parcelas",
+      "target": "dir:src/app/domain/ui",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/domain/ui/card-segunda-via-documentos",
+      "target": "dir:src/app/domain/ui",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/domain/ui/card-status-renegociacao",
+      "target": "dir:src/app/domain/ui",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/domain/ui/card-valores-da-renegociacao",
+      "target": "dir:src/app/domain/ui",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/feature/acompanhamento/pages/assinatura-documentos",
+      "target": "dir:src/app/feature/acompanhamento/pages",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/feature/acompanhamento/pages",
+      "target": "dir:src/app/feature/acompanhamento",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/feature/acompanhamento",
+      "target": "dir:src/app/feature",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/feature",
+      "target": "dir:src/app",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/feature/acompanhamento/pages/detalhes-contrato",
+      "target": "dir:src/app/feature/acompanhamento/pages",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/feature/acompanhamento/pages/pagamento-da-entrada",
+      "target": "dir:src/app/feature/acompanhamento/pages",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/feature/dashboard/pages/dashboard",
+      "target": "dir:src/app/feature/dashboard/pages",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/feature/dashboard/pages",
+      "target": "dir:src/app/feature/dashboard",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/feature/dashboard",
+      "target": "dir:src/app/feature",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/shared/components/bsc-card",
+      "target": "dir:src/app/shared/components",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/shared/components",
+      "target": "dir:src/app/shared",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/shared",
+      "target": "dir:src/app",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/shared/components/bsc-table",
+      "target": "dir:src/app/shared/components",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/shared/components/input-select",
+      "target": "dir:src/app/shared/components",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/shared/components/menu-cabecalho",
+      "target": "dir:src/app/shared/components",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/shared/components/paginacao",
+      "target": "dir:src/app/shared/components",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/shared/pipes",
+      "target": "dir:src/app/shared",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/app/shared/utils",
+      "target": "dir:src/app/shared",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/assets/config",
+      "target": "dir:src/assets",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "dir:src/assets",
+      "target": "dir:src",
+      "type": "dir-parent",
+      "weight": 0.65
+    },
+    {
+      "source": "file:src/app/app.component.spec.ts",
+      "target": "file:src/app/app.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/app.component.ts",
+      "target": "file:src/app/shared/components/menu-cabecalho/menu-cabecalho.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/app.component.ts",
+      "target": "file:src/app/core/services/router.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/app.component.ts",
+      "target": "file:src/app/feature/acompanhamento/pages/detalhes-contrato/detalhes-contrato.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/app.component.ts",
+      "target": "file:src/app/core/config/app-config.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/app.component.ts",
+      "target": "file:src/app/feature/dashboard/pages/dashboard/dashboard.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/app.component.ts",
+      "target": "file:src/app/feature/acompanhamento/pages/assinatura-documentos/assinatura-documentos.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/app.component.ts",
+      "target": "file:src/app/feature/acompanhamento/pages/pagamento-da-entrada/pagamento-da-entrada.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/app.component.ts",
+      "target": "file:src/app/core/services/auth.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/app.config.spec.ts",
+      "target": "file:src/app/app.config.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/config/app-config.service.spec.ts",
+      "target": "file:src/app/core/config/app-config.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/services/auth.service.spec.ts",
+      "target": "file:src/app/core/services/auth.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/services/http.service.spec.ts",
+      "target": "file:src/app/core/services/http.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/services/http.service.spec.ts",
+      "target": "file:src/app/core/services/auth.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/services/http.service.spec.ts",
+      "target": "file:src/app/core/services/loading.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/services/http.service.spec.ts",
+      "target": "file:src/app/core/services/router.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/services/http.service.ts",
+      "target": "file:src/app/core/config/app-config.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/services/http.service.ts",
+      "target": "file:src/app/core/services/auth.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/services/http.service.ts",
+      "target": "file:src/app/core/services/loading.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/services/loading.service.spec.ts",
+      "target": "file:src/app/core/services/loading.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/services/monitoramento.service.spec.ts",
+      "target": "file:src/app/core/services/monitoramento.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/core/services/router.service.spec.ts",
+      "target": "file:src/app/core/services/router.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/mappers/acompanhamento.mapper.ts",
+      "target": "file:src/app/domain/models/dto/acompanhamento.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/mappers/acompanhamento.mapper.ts",
+      "target": "file:src/app/domain/models/modelos/acompanhamento.model.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/mappers/acompanhamento.mapper.ts",
+      "target": "file:src/app/domain/models/enums/status-contrato.enum.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/mappers/contrato.mapper.ts",
+      "target": "file:src/app/domain/models/dto/contrato.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/mappers/contrato.mapper.ts",
+      "target": "file:src/app/domain/models/modelos/contrato.model.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/mappers/parcelas.mapper.ts",
+      "target": "file:src/app/domain/models/dto/parcelas.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/mappers/parcelas.mapper.ts",
+      "target": "file:src/app/domain/models/modelos/parcelas.model.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/models/dto/acompanhamento.dto.ts",
+      "target": "file:src/app/domain/models/enums/status-contrato.enum.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/models/dto/contrato.dto.ts",
+      "target": "file:src/app/domain/models/enums/status-contrato.enum.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/models/dto/parcelas.dto.ts",
+      "target": "file:src/app/domain/models/enums/status-parcela.enum.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/models/modelos/acompanhamento.model.ts",
+      "target": "file:src/app/domain/models/enums/status-contrato.enum.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/models/modelos/contrato.model.ts",
+      "target": "file:src/app/domain/models/enums/status-contrato.enum.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/models/modelos/parcelas.model.ts",
+      "target": "file:src/app/domain/models/enums/status-parcela.enum.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/acompanhamento.service.spec.ts",
+      "target": "file:src/app/domain/services/acompanhamento.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/acompanhamento.service.ts",
+      "target": "file:src/app/domain/models/dto/api-response.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/acompanhamento.service.ts",
+      "target": "file:src/app/domain/models/dto/acompanhamento.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/boleto.service.spec.ts",
+      "target": "file:src/app/domain/services/boleto.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/boleto.service.spec.ts",
+      "target": "file:src/app/domain/models/dto/api-response.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/boleto.service.ts",
+      "target": "file:src/app/domain/models/dto/api-response.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/boleto.service.ts",
+      "target": "file:src/app/domain/models/dto/boleto-entrada.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/contrato-documentos.service.spec.ts",
+      "target": "file:src/app/domain/services/contrato-documentos.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/contrato-documentos.service.spec.ts",
+      "target": "file:src/app/domain/models/dto/api-response.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/contrato-documentos.service.spec.ts",
+      "target": "file:src/app/domain/models/dto/documentos-contrato.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/contrato-documentos.service.ts",
+      "target": "file:src/app/domain/models/dto/api-response.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/contrato-documentos.service.ts",
+      "target": "file:src/app/domain/models/dto/documentos-contrato.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/contrato.service.spec.ts",
+      "target": "file:src/app/domain/services/contrato.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/contrato.service.spec.ts",
+      "target": "file:src/app/domain/models/dto/contrato.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/contrato.service.ts",
+      "target": "file:src/app/domain/models/dto/contrato.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/dados-cliente.service.spec.ts",
+      "target": "file:src/app/domain/services/dados-cliente.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/dados-cliente.service.spec.ts",
+      "target": "file:src/app/domain/models/dto/api-response.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/dados-cliente.service.spec.ts",
+      "target": "file:src/app/domain/models/dto/dados-cliente-bff2.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/parcelas.service.spec.ts",
+      "target": "file:src/app/domain/services/parcelas.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/parcelas.service.spec.ts",
+      "target": "file:src/app/domain/models/dto/api-response.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/parcelas.service.spec.ts",
+      "target": "file:src/app/domain/models/dto/parcelas.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/parcelas.service.spec.ts",
+      "target": "file:src/app/domain/models/enums/status-parcela.enum.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/parcelas.service.ts",
+      "target": "file:src/app/domain/models/dto/api-response.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/services/parcelas.service.ts",
+      "target": "file:src/app/domain/models/dto/parcelas.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.spec.ts",
+      "target": "file:src/app/domain/store/renegociacao.store.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.spec.ts",
+      "target": "file:src/app/domain/services/boleto.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.spec.ts",
+      "target": "file:src/app/domain/services/acompanhamento.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.spec.ts",
+      "target": "file:src/app/domain/services/contrato.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.spec.ts",
+      "target": "file:src/app/domain/services/dados-cliente.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.spec.ts",
+      "target": "file:src/app/domain/services/contrato-documentos.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.spec.ts",
+      "target": "file:src/app/domain/services/parcelas.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.spec.ts",
+      "target": "file:src/app/domain/models/dto/api-response.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.spec.ts",
+      "target": "file:src/app/domain/models/dto/boleto-entrada.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.spec.ts",
+      "target": "file:src/app/domain/models/modelos/cliente.model.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.spec.ts",
+      "target": "file:src/app/domain/models/dto/parcelas.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.spec.ts",
+      "target": "file:src/app/domain/models/enums/status-parcela.enum.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.ts",
+      "target": "file:src/app/domain/models/modelos/acompanhamento.model.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.ts",
+      "target": "file:src/app/domain/models/modelos/boleto.model.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.ts",
+      "target": "file:src/app/domain/models/modelos/contrato.model.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.ts",
+      "target": "file:src/app/domain/models/modelos/cliente.model.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.ts",
+      "target": "file:src/app/domain/models/modelos/parcelas.model.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.ts",
+      "target": "file:src/app/domain/services/acompanhamento.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.ts",
+      "target": "file:src/app/domain/services/boleto.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.ts",
+      "target": "file:src/app/domain/services/contrato.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.ts",
+      "target": "file:src/app/domain/services/dados-cliente.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.ts",
+      "target": "file:src/app/domain/services/parcelas.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.ts",
+      "target": "file:src/app/domain/mappers/acompanhamento.mapper.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.ts",
+      "target": "file:src/app/domain/mappers/contrato.mapper.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.ts",
+      "target": "file:src/app/domain/mappers/parcelas.mapper.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.ts",
+      "target": "file:src/app/domain/services/contrato-documentos.service.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/store/renegociacao.store.ts",
+      "target": "file:src/app/domain/models/dto/documentos-contrato.dto.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/ui/card-dados-cliente/card-dados-cliente.component.spec.ts",
+      "target": "file:src/app/domain/ui/card-dados-cliente/card-dados-cliente.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/ui/card-dados-do-pagamento/card-dados-do-pagamento.component.spec.ts",
+      "target": "file:src/app/domain/ui/card-dados-do-pagamento/card-dados-do-pagamento.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/ui/card-dados-do-pagamento/card-dados-do-pagamento.component.ts",
+      "target": "file:src/app/shared/components/bsc-card/bsc-card.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/ui/card-pagamento-das-parcelas/card-pagamento-das-parcelas.component.spec.ts",
+      "target": "file:src/app/domain/ui/card-pagamento-das-parcelas/card-pagamento-das-parcelas.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/ui/card-segunda-via-documentos/card-segunda-via-documentos.component.spec.ts",
+      "target": "file:src/app/domain/ui/card-segunda-via-documentos/card-segunda-via-documentos.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/ui/card-status-renegociacao/card-status-renegociacao.component.spec.ts",
+      "target": "file:src/app/domain/ui/card-status-renegociacao/card-status-renegociacao.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/ui/card-status-renegociacao/card-status-renegociacao.component.ts",
+      "target": "file:src/app/shared/components/bsc-card/bsc-card.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/domain/ui/card-valores-da-renegociacao/card-valores-da-renegociacao.component.spec.ts",
+      "target": "file:src/app/domain/ui/card-valores-da-renegociacao/card-valores-da-renegociacao.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/feature/acompanhamento/pages/assinatura-documentos/assinatura-documentos.component.spec.ts",
+      "target": "file:src/app/feature/acompanhamento/pages/assinatura-documentos/assinatura-documentos.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/feature/acompanhamento/pages/detalhes-contrato/detalhes-contrato.component.spec.ts",
+      "target": "file:src/app/feature/acompanhamento/pages/detalhes-contrato/detalhes-contrato.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/feature/acompanhamento/pages/pagamento-da-entrada/pagamento-da-entrada.component.spec.ts",
+      "target": "file:src/app/feature/acompanhamento/pages/pagamento-da-entrada/pagamento-da-entrada.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/feature/dashboard/pages/dashboard/dashboard.component.spec.ts",
+      "target": "file:src/app/feature/dashboard/pages/dashboard/dashboard.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shared/components/bsc-card/bsc-card.component.spec.ts",
+      "target": "file:src/app/shared/components/bsc-card/bsc-card.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shared/components/bsc-table/bsc-table.component.spec.ts",
+      "target": "file:src/app/shared/components/bsc-table/bsc-table.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shared/components/input-select/input-select.component.spec.ts",
+      "target": "file:src/app/shared/components/input-select/input-select.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shared/components/menu-cabecalho/menu-cabecalho.component.spec.ts",
+      "target": "file:src/app/shared/components/menu-cabecalho/menu-cabecalho.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shared/components/paginacao/paginacao.component.spec.ts",
+      "target": "file:src/app/shared/components/paginacao/paginacao.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/web-component.module.ts",
+      "target": "file:src/app/app.config.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/web-component.module.ts",
+      "target": "file:src/app/app.component.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/bootstrap-webcomponent.ts",
+      "target": "file:src/app/web-component.module.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/bootstrap.ts",
+      "target": "file:src/app/app.config.ts",
+      "type": "imports",
+      "weight": 1
+    },
+    {
+      "source": "file:src/bootstrap.ts",
+      "target": "file:src/app/app.component.ts",
+      "type": "imports",
+      "weight": 1
+    }
+  ],
+  "stats": {
+    "totalNodes": 163,
+    "totalEdges": 270,
+    "fileCount": 112,
+    "dirCount": 51,
+    "importEdges": 108,
+    "dirParentEdges": 50,
+    "tsPathAliases": 0,
+    "components": 1,
+    "largestComponentSize": 163,
+    "giantComponentPercent": 100
+  }
+}

@@ -1,6 +1,6 @@
-```json
+
 {
-  "name": "fed-node-npm-template",
+  "name": "recr-fed-agc-posvenda",
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
@@ -24,10 +24,8 @@
     "@angular/platform-browser": "~21.2.0",
     "@angular/platform-browser-dynamic": "~21.2.0",
     "@angular/router": "~21.2.0",
-    "@ngrx/operators": "~21.0.0",
     "@ngrx/signals": "~21.0.0",
     "angular-google-tag-manager": "1.13.0",
-    "es-check": "7.2.1",
     "es-module-shims": "1.5.12",
     "jsbarcode": "3.12.3",
     "rxjs": "~7.8.0",
@@ -51,7 +49,7 @@
   },
   "overrides": {
     "electron-to-chromium": "1.4.733",
-    "picomatch": "2.3.1"
+    "http-proxy-middleware": "^3.0.7"
   },
   "browserslist": [
     "last 2 Chrome versions",
@@ -64,4 +62,3 @@
     "printWidth": 180
   }
 }
-```
