@@ -1,22 +1,18 @@
-const { withNativeFederation, shareAll } = require('@angular-architects/native-federation/config');
+const { withNativeFederation } = require('@angular-architects/native-federation/config');
 
 module.exports = withNativeFederation({
   name: 'recr-fed-agc-posvenda',
-  shared: {
-    ...shareAll({
-      singleton: true,
-      strictVersion: false,
-      requiredVersion: 'auto',
-    }),
-  },
+
+  // Ilha isolada: o remote bundla o próprio Angular/rxjs.
+  // Nada é negociado com o shell (que também não compartilha nada).
+  shared: {},
+
   exposes: {
     './component': './src/app/app.component.ts',
     './bootstrap-webcomponent': './src/bootstrap-webcomponent.ts',
   },
-  skip: [
-    'rxjs/ajax', 'rxjs/fetch', 'rxjs/testing', 'rxjs/webSocket', 'zone.js',
-    '@ngx-translate/core', '@ngx-translate/http-loader', 'recr-fed-agc-posvenda',
-    // internos deste remote não são libs federadas:
-    (name) => name.startsWith('@app/') || name.startsWith('@core/') || name.startsWith('@shared/'),
-  ],
+
+  // Internos deste remote NÃO são libs federadas (barra o shared-mappings
+  // dos aliases de tsconfig e resolve os WARN de "entryPoint/barrel").
+  skip: [(name) => name.startsWith('@app/') || name.startsWith('@core/') || name.startsWith('@shared/')],
 });
