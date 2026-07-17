@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://internal/liquid-ir.schema.json",
+  "title": "Liquid Design System — Intermediate Representation",
+  "description": "Contrato ÚNICO entre a camada de aquisição (CDN/scraper) e a camada de emissão (.md, codemods, lint). Nenhum consumidor lê o CDN direto. Nenhum emissor conhece o Storybook.",
+  "type": "object",
+  "required": ["irVersion", "dsVersion", "source", "generatedAt", "components"],
+  "additionalProperties": false,
+  "properties": {
+    "irVersion": {
+      "type": "string",
+      "const": "1.0.0",
+      "description": "Versão do SCHEMA. Bump = breaking change nos emissores."
+    },
+    "dsVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Versão do Design System Liquid extraída."
+    },
+    "source": {
+      "type": "object",
+      "required": ["tier", "url", "integrity"],
+      "additionalProperties": false,
+      "properties": {
+        "tier": {
+          "type": "integer",
+          "enum": [0, 1, 2],
+          "description": "0=artefato de build tipado; 1=índice Storybook; 2=DOM scraped. Rastreia CONFIANÇA do dado."
+        },
+        "kind": { "type": "string", "examples": ["stencil-docs-json", "storybook-index-v7", "dom-argstable"] },
+        "url": { "type": "string", "format": "uri" },
+        "integrity": { "type": "string", "description": "sha256 do artefato bruto. Reprodutibilidade." }
+      }
+    },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "tokens": {
+      "type": "object",
+      "description": "Design tokens (cores, espaçamento, tipografia) quando extraíveis.",
+      "additionalProperties": { "type": "string" }
+    },
+    "components": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/component" }
+    }
+  },
+  "$defs": {
+    "component": {
+      "type": "object",
+      "required": ["tag", "status", "props"],
+      "additionalProperties": false,
+      "properties": {
+        "tag": { "type": "string", "pattern": "^brad-[a-z0-9-]+$" },
+        "title": { "type": "string" },
+        "category": { "type": "string", "examples": ["Forms", "Layout", "Feedback"] },
+        "status": { "type": "string", "enum": ["stable", "beta", "deprecated", "unknown"] },
+        "deprecatedBy": { "type": "string" },
+        "summary": { "type": "string", "maxLength": 280, "description": "TOKEN BUDGET: 1 frase. O .md gerado herda esse limite." },
+        "props": { "type": "array", "items": { "$ref": "#/$defs/prop" } },
+        "events": { "type": "array", "items": { "$ref": "#/$defs/event" } },
+        "slots": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "properties": { "name": { "type": "string" }, "description": { "type": "string" } }
+          }
+        },
+        "cssProps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "properties": { "name": { "type": "string", "pattern": "^--" }, "default": { "type": "string" } }
+          }
+        },
+        "methods": { "type": "array", "items": { "type": "object" } },
+        "modality": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["webcomponent", "html-css"] },
+          "description": "Liquid entrega WC (brad-*) E modalidade HTML/CSS. O IR precisa distinguir."
+        },
+        "examples": {
+          "type": "array",
+          "maxItems": 2,
+          "description": "TOKEN BUDGET: no máx. 2 exemplos canônicos. Não é vitrine, é contrato.",
+          "items": {
+            "type": "object",
+            "required": ["lang", "code"],
+            "properties": {
+              "lang": { "type": "string", "enum": ["html", "typescript"] },
+              "title": { "type": "string" },
+              "code": { "type": "string" }
+            }
+          }
+        },
+        "a11y": {
+          "type": "object",
+          "properties": {
+            "requiredAttrs": { "type": "array", "items": { "type": "string" } },
+            "notes": { "type": "string" }
+          }
+        }
+      }
+    },
+    "prop": {
+      "type": "object",
+      "required": ["name", "type", "required"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "description": "Nome da property JS (camelCase)." },
+        "attr": { "type": "string", "description": "Nome do atributo HTML (kebab-case). Angular templates usam ESTE." },
+        "type": { "type": "string", "description": "Assinatura TS bruta, ex.: \"'primary' | 'secondary'\"." },
+        "values": { "type": "array", "items": { "type": "string" }, "description": "Union literal expandida. Alimenta o lint de valores inválidos." },
+        "required": { "type": "boolean" },
+        "default": { "type": ["string", "number", "boolean", "null"] },
+        "reflect": { "type": "boolean" },
+        "deprecated": { "type": "boolean", "default": false },
+        "description": { "type": "string", "maxLength": 200 },
+        "confidence": {
+          "type": "string",
+          "enum": ["typed", "inferred", "scraped"],
+          "description": "typed = veio de .d.ts/docs.json. scraped = veio de DOM (pode mentir). Emissores DEVEM marcar 'scraped' no .md."
+        }
+      }
+    },
+    "event": {
+      "type": "object",
+      "required": ["name"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "description": "Nome do CustomEvent. Em Angular: (nomeDoEvento)=\"...\"." },
+        "detail": { "type": "string", "description": "Tipo do event.detail." },
+        "bubbles": { "type": "boolean" },
+        "description": { "type": "string", "maxLength": 200 }
+      }
+    }
+  }
+}
