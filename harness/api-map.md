@@ -1,229 +1,107 @@
-# Mapa legado -> moderno (Angular 21+)
+# Mapa legado para moderno, Angular 21 ou superior
 
-## 1. Componente completo
+Este arquivo e uma tabela de traducao, nao um tutorial. Consulte-o antes de gerar
+componente ou template.
 
-Legado:
+## 1. Membros de classe
 
-```ts
-@Component({ selector: 'app-conta', templateUrl: './conta.component.html' })
-export class ContaComponent implements OnInit, OnChanges {
-  @Input() contaId!: string;
-  @Output() selecionada = new EventEmitter<Conta>();
-  conta?: Conta;
-  constructor(private service: ContaService) {}
-  ngOnInit() { this.service.buscar(this.contaId).subscribe(c => this.conta = c); }
-  ngOnChanges() { /* refaz a busca */ }
-}
-```
+| Legado | Moderno | Observacao |
+|---|---|---|
+| decorator Input em campo | funcao input, atribuida a campo readonly | vira signal, leitura por chamada |
+| decorator Input com propriedade required | funcao input.required | nao pode ser lida no construtor |
+| decorator Input com alias | funcao input com opcao de alias | |
+| decorator Input com coercao manual | funcao input com opcao de transformacao | ha transformadores prontos para numero e booleano |
+| decorator Output com EventEmitter | funcao output | emissao continua sendo por metodo emit |
+| par de entrada e saida para two way | funcao model | habilita a sintaxe de binding bidirecional no consumidor |
+| decorator ViewChild | funcao viewChild ou viewChild.required | vira signal; resolve apos a primeira renderizacao |
+| decorator ViewChildren | funcao viewChildren | |
+| decorator ContentChild e ContentChildren | funcoes contentChild e contentChildren | |
+| dependencia no construtor | campo readonly com inject | permite heranca sem repassar dependencias |
+| ngOnChanges | valor derivado sobre o signal de entrada | reage sozinho, sem gancho de ciclo de vida |
+| ngOnDestroy para cancelar assinatura | efeito com funcao de limpeza, ou conversao para signal | limpeza automatica no destroy |
 
-Moderno:
+## 2. Template
 
-```ts
-@Component({
-  selector: 'app-conta',
-  templateUrl: './conta.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class Conta {
-  private readonly service = inject(ContaService);
+| Legado | Moderno | Observacao |
+|---|---|---|
+| diretiva de condicional com asterisco | bloco de condicional embutido | suporta ramo alternativo e encadeamento, com captura de valor por alias |
+| diretiva de repeticao com asterisco | bloco de repeticao embutido | a expressao de rastreio e obrigatoria |
+| ngSwitch com casos | bloco de selecao embutido | inclui ramo padrao |
+| verificacao manual de lista vazia | ramo de lista vazia do proprio bloco de repeticao | elimina a condicional que envolvia a lista |
+| ngClass com objeto | binding de classe individual, ou binding de classe com objeto | |
+| ngStyle | binding de estilo, com unidade opcional no proprio nome do binding | |
+| carregamento manual sob demanda | bloco de carregamento adiado | oferece ramos de espera, carregamento e erro, e gatilhos como entrada em viewport |
 
-  readonly contaId = input.required<string>();
-  readonly selecionada = output<Conta>();
+Variaveis implicitas do bloco de repeticao: indice, primeiro, ultimo, par, impar e
+contagem total. Use-as em vez de calcular no componente.
 
-  readonly conta = httpResource<Conta>(() => `/api/contas/${this.contaId()}`);
-}
-```
+Sobre a expressao de rastreio: usar o indice so e aceitavel em lista imutavel e sem
+reordenacao. Em qualquer outro caso use a chave estavel do item, ou o Angular recria os
+nos do DOM e voce perde estado de formulario, foco e animacao.
 
-Observe: `ngOnChanges` desapareceu. A dependencia de `contaId` esta na propria expressao
-do recurso; mudar o input refaz a busca sozinho.
+## 3. Camada de dados
 
-## 2. Inputs, outputs e two-way
+| Situacao | Escolha correta | Por que |
+|---|---|---|
+| leitura cuja URL ou parametros derivam de signals | recurso HTTP declarativo | refaz a busca sozinho quando a dependencia muda; expoe valor, carregamento, erro e recarga |
+| comando com efeito colateral, como criacao, alteracao ou exclusao | cliente HTTP tradicional, consumido por promessa ou observable | nao e estado derivado, e acao pontual |
+| fluxo com composicao temporal, como atraso, cancelamento ou nova tentativa | RxJS, convertendo o resultado para signal na borda | signals nao modelam tempo |
+| estado de UI local | signal | |
 
-```ts
-readonly rotulo = input('');                          // opcional com default
-readonly id = input.required<string>();               // obrigatorio
-readonly total = input(0, { transform: numberAttribute });
-readonly aliasado = input(0, { alias: 'valorInicial' });
+Nao force o recurso declarativo no papel de comando, nem o contrario. O criterio e simples:
+o valor e derivado de estado, ou e consequencia de uma acao do usuario?
 
-readonly salvar = output<Pedido>();
-readonly fechado = output<void>();
+## 4. Guard, interceptor e resolver
 
-readonly aberto = model(false);                        // two-way: [(aberto)]
-```
+A forma moderna e funcional: uma funcao exportada, tipada pelo tipo correspondente do
+Angular, que obtem dependencias por inject no proprio corpo. Registro por provider
+funcional na configuracao da aplicacao.
 
-Armadilhas:
+Classes implementando interfaces de guard, e interceptors registrados por token de
+multi-provider, sao legado. Nao gere. O motivo pratico e testabilidade: a forma funcional
+e testavel executando a funcao dentro de um contexto de injecao, sem instanciar componente
+nem modulo.
 
-- `input.required()` **nao pode ser lido no construtor nem em field initializer sincrono**.
-  Leia dentro de `computed`, `effect` ou apos `ngOnInit`.
-- Input e signal somente-leitura. Para estado local derivado de input use `linkedSignal`:
+## 5. Armadilhas frequentes
 
-```ts
-readonly filtroSelecionado = linkedSignal(() => this.filtroPadrao());
-```
+Entrada obrigatoria nao pode ser lida no construtor nem em inicializacao sincrona de campo,
+porque o valor ainda nao chegou. Leia dentro de valor derivado, de efeito, ou apos a
+inicializacao do componente.
 
-## 3. Queries
+Entrada e signal somente leitura. Se o componente precisa de estado local que comeca a
+partir da entrada mas pode ser alterado pelo usuario, use signal vinculado, nunca copia
+manual em um gancho de ciclo de vida.
 
-```ts
-readonly campo = viewChild.required<ElementRef<HTMLInputElement>>('campo');
-readonly linhas = viewChildren(LinhaComponent);
-readonly projetado = contentChild(CabecalhoComponent);
-```
+Consultas de view e de conteudo so resolvem apos a primeira renderizacao. Manipulacao
+imperativa de DOM vai em gancho de pos renderizacao, nao no construtor.
 
-Queries sao signals: leia com `this.campo()`. Elas so resolvem apos a primeira renderizacao;
-use `afterNextRender` para manipulacao imperativa de DOM.
+Efeito so pode ser criado em contexto de injecao, ou seja, em inicializacao de campo ou no
+construtor. Criar efeito dentro de um metodo de evento falha, a menos que voce passe o
+injector explicitamente. Se voce esta tentando fazer isso, provavelmente queria um valor
+derivado.
 
-## 4. Control flow no template
+Efeito com recurso externo, como temporizador ou listener, precisa registrar a propria
+limpeza pela funcao de limpeza que o efeito recebe. Sem isso, o recurso sobrevive ao
+componente.
 
-```html
-@if (usuario(); as u) {
-  <p>{{ u.nome }}</p>
-} @else if (carregando()) {
-  <app-spinner />
-} @else {
-  <p>Nenhum usuario.</p>
-}
+## 6. Interoperabilidade com RxJS
 
-@for (item of itens(); track item.id) {
-  <li>{{ item.nome }}</li>
-} @empty {
-  <li>Lista vazia.</li>
-}
+Converta observable para signal quando o valor for consumido pelo template, sempre
+definindo o valor inicial. Converta signal para observable quando precisar aplicar
+operadores de composicao temporal.
 
-@switch (status()) {
-  @case ('ativo')   { <app-ativo /> }
-  @case ('inativo') { <app-inativo /> }
-  @default          { <app-desconhecido /> }
-}
+Use RxJS onde ele e superior: atraso, cancelamento de requisicao anterior, nova tentativa
+com politica, e combinacao de multiplos fluxos reais. Use signals para estado de interface.
+Converter tudo para um lado so e ideologia, nao engenharia.
 
-@defer (on viewport) {
-  <app-grafico-pesado />
-} @placeholder (minimum 300ms) {
-  <div class="skeleton"></div>
-} @loading (after 100ms) {
-  <app-spinner />
-} @error {
-  <p>Falha ao carregar.</p>
-}
-```
+## 7. Diferencas praticas do perfil zoneless
 
-Armadilhas de `@for`:
+Deixam de disparar deteccao de mudanca automaticamente: callbacks de temporizador,
+continuacao de promessa, callback de assinatura, e listener registrado manualmente.
 
-- `track` e **obrigatorio**. `track $index` so e aceitavel para listas imutaveis sem
-  reordenacao; caso contrario use a chave estavel do item.
-- Variaveis implicitas: `$index`, `$first`, `$last`, `$even`, `$odd`, `$count`.
-- `@empty` substitui o `@if (lista.length === 0)` que costumava envolver a lista.
+Continuam disparando: alteracao de signal, evento vindo do template, pipe assincrono, e
+marcacao explicita de verificacao.
 
-Classes e estilos:
-
-```html
-<div [class.ativo]="ativo()" [class.erro]="temErro()"></div>
-<div [class]="{ ativo: ativo(), erro: temErro() }"></div>
-<div [style.width.px]="largura()"></div>
-```
-
-## 5. HTTP
-
-```ts
-// Leitura declarativa: use httpResource
-readonly extrato = httpResource<Extrato>(() => ({
-  url: `/api/contas/${this.contaId()}/extrato`,
-  params: { pagina: this.pagina() },
-}));
-// extrato.value() | extrato.isLoading() | extrato.error() | extrato.reload()
-```
-
-```ts
-// Escrita (POST/PUT/DELETE): HttpClient continua sendo o caminho
-private readonly http = inject(HttpClient);
-
-async salvar(pedido: Pedido): Promise<void> {
-  await firstValueFrom(this.http.post<void>('/api/pedidos', pedido));
-}
-```
-
-Regra: `httpResource` para **estado de leitura derivado de signals**. Comando imperativo
-com efeito colateral continua sendo `HttpClient`. Nao force um no papel do outro.
-
-Providers em `app.config.ts`:
-
-```ts
-export const appConfig: ApplicationConfig = {
-  providers: [
-    provideZonelessChangeDetection(),
-    provideHttpClient(withInterceptors([autenticacaoInterceptor])),
-    provideRouter(routes),
-  ],
-};
-```
-
-## 6. Interceptor, guard e resolver (funcionais)
-
-```ts
-export const autenticacaoInterceptor: HttpInterceptorFn = (req, next) => {
-  const token = inject(TokenService).atual();
-  return next(token ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` } }) : req);
-};
-
-export const autenticadoGuard: CanActivateFn = () => {
-  const sessao = inject(SessaoService);
-  return sessao.autenticado() || inject(Router).createUrlTree(['/login']);
-};
-```
-
-Classes com `HTTP_INTERCEPTORS` e `CanActivate` como classe sao legado. Nao gere.
-
-## 7. `effect` e contexto de injecao
-
-```ts
-export class Painel {
-  private readonly analytics = inject(Analytics);
-  readonly filtro = input('');
-
-  constructor() {
-    // OK: field initializer / construtor estao em contexto de injecao
-    effect(() => this.analytics.rastrear('filtro', this.filtro()));
-  }
-
-  aoClicar(): void {
-    // ERRADO: sem contexto de injecao
-    // effect(() => ...);
-    // Se realmente precisar, passe { injector: this.injector }.
-  }
-}
-```
-
-`effect` limpa-se sozinho quando o componente e destruido. Para limpeza propria use
-`onCleanup`:
-
-```ts
-effect((onCleanup) => {
-  const id = setInterval(() => this.tick(), 1000);
-  onCleanup(() => clearInterval(id));
-});
-```
-
-## 8. Interop com RxJS
-
-```ts
-readonly usuario = toSignal(this.service.usuario$, { initialValue: null });
-readonly filtro$ = toObservable(this.filtro);
-```
-
-Use RxJS onde ele e superior: composicao temporal (`debounceTime`, `switchMap`,
-`retry`, `combineLatest` sobre streams reais). Use signals para estado de UI.
-Converter tudo para signal ou tudo para observable e ideologia, nao engenharia.
-
-## 9. Diferencas praticas do zoneless (PERFIL-ZL)
-
-Nao dispara mais deteccao de mudanca automaticamente:
-
-- callback de `setTimeout` / `setInterval`
-- `.then()` de Promise
-- `subscribe()` de Observable
-- `addEventListener` registrado a mao
-
-Dispara: alteracao de signal, evento vindo do template (`(click)`), `AsyncPipe`,
-`markForCheck()` explicito.
-
-Consequencia pratica: qualquer estado que a UI le **precisa** ser signal. Um campo de
-classe comum atualizado dentro de `subscribe` simplesmente nao aparece na tela.
+Consequencia pratica: qualquer estado que a interface le precisa ser signal. Um campo de
+classe comum, atualizado dentro de um callback de assinatura, simplesmente nao aparece na
+tela, e o sintoma nao aponta para a causa.

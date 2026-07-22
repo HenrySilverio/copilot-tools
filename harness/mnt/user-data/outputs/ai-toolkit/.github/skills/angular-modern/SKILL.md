@@ -1,17 +1,17 @@
 ---
 name: angular-modern
-description: Padroes obrigatorios de Angular 21+ (signals, input()/output()/model(), inject(), control flow @if/@for/@switch, standalone, zoneless, defer, httpResource). Use SEMPRE que for criar, alterar, revisar ou migrar qualquer arquivo Angular (.ts de componente, diretiva, pipe, service, guard, interceptor, resolver, .html de template ou app.config.ts). Use tambem quando o pedido mencionar "modernizar", "migrar versao", "esta usando API antiga", NgModule, ngIf, ngFor, @Input, @Output, subscribe em componente ou ChangeDetectionStrategy.
+description: Padroes obrigatorios de Angular 21 ou superior - signals, input, output, model, inject, controle de fluxo embutido, standalone, zoneless, defer e httpResource. Use SEMPRE que for criar, alterar, revisar ou migrar qualquer arquivo Angular, seja componente, diretiva, pipe, service, guard, interceptor, resolver, template ou configuracao da aplicacao. Use tambem quando o pedido mencionar modernizar, migrar versao, API antiga, NgModule, ngIf, ngFor, decorator de entrada ou saida, subscribe em componente, ou estrategia de deteccao de mudanca.
 ---
 
-# Angular Moderno (v21+)
+# Angular Moderno, versao 21 ou superior
 
-Modelos de linguagem foram treinados majoritariamente em Angular 15-17. Sem esta skill o
-codigo gerado sai com `@Input()`, `*ngIf`, `NgModule` e `constructor(private http)`.
-Esta skill existe para impedir isso.
+Modelos de linguagem foram treinados majoritariamente em Angular 15 a 17. Sem esta skill o
+codigo gerado sai com decorators de entrada e saida, diretivas estruturais com asterisco,
+modulos e injecao por construtor. Esta skill existe para impedir isso.
 
 ## Escopo
 
-Apenas APIs do **framework Angular**. Nao cobre gerenciamento de estado, module federation,
+Apenas APIs do framework Angular. Nao cobre gerenciamento de estado, module federation,
 testes, design system nem arquitetura de pastas. Se o pedido envolver esses temas, trate-os
 por outra fonte.
 
@@ -21,25 +21,25 @@ Nenhuma.
 
 ---
 
-## Passo 0 - Detectar o perfil do projeto (obrigatorio)
+## Passo 0 - Detectar o perfil do projeto
 
 Nunca assuma. Antes de escrever codigo, leia:
 
 | Arquivo | O que extrair |
 |---|---|
-| `package.json` | versao exata de `@angular/core`; presenca de `zone.js` |
-| `src/app/app.config.ts` | `provideZonelessChangeDetection()` vs `provideZoneChangeDetection()` |
-| `angular.json` | `polyfills` contem `zone.js`? |
-| `tsconfig.json` | `strict`, `strictTemplates` |
+| package.json | versao exata de @angular/core e presenca de zone.js |
+| configuracao da aplicacao | qual provider de deteccao de mudanca esta registrado |
+| angular.json | se os polyfills incluem zone.js |
+| tsconfig.json | se strict e strictTemplates estao ativos |
 
-Classifique e **declare em uma linha** no inicio da resposta:
+Classifique e declare em uma linha no inicio da resposta:
 
-- **PERFIL-ZL** (zoneless): sem `zone.js`. Padrao em projetos novos a partir do v21.
-- **PERFIL-Z** (zone.js): ainda usa `zone.js`. Comum em projetos migrados.
+- PERFIL-ZL, zoneless: sem zone.js. Padrao em projetos criados a partir da versao 21.
+- PERFIL-Z, com zone.js: comum em projetos migrados de versoes anteriores.
 
-O perfil muda o codigo gerado. Em PERFIL-Z, `setTimeout` e `subscribe` ainda disparam
-deteccao de mudanca; em PERFIL-ZL, **nao disparam** - o estado precisa ser signal ou
-o evento precisa vir do template.
+O perfil muda o codigo gerado. Em PERFIL-Z, temporizadores e callbacks de assinatura ainda
+disparam deteccao de mudanca. Em PERFIL-ZL nao disparam: o estado precisa ser signal, ou o
+evento precisa vir do template.
 
 ---
 
@@ -47,84 +47,80 @@ o evento precisa vir do template.
 
 | Nunca gere | Sempre gere |
 |---|---|
-| `NgModule`, `declarations`, `imports` de modulo | componente standalone (padrao desde v19; nao escreva `standalone: true`) |
-| `@Input() nome: string` | `nome = input<string>()` / `input.required<string>()` |
-| `@Output() ev = new EventEmitter()` | `ev = output<T>()` |
-| two-way com `@Input`+`@Output` | `model<T>()` |
-| `@ViewChild` / `@ContentChild` | `viewChild()` / `contentChild()` / `viewChildren()` |
-| `constructor(private x: X)` | `private readonly x = inject(X)` |
-| `*ngIf` / `*ngFor` / `[ngSwitch]` | `@if` / `@for` (com `track` obrigatorio) / `@switch` |
-| `ngClass` / `ngStyle` | `[class.x]` / `[style.x]` (ou `[class]` / `[style]` com objeto) |
-| `subscribe()` dentro de componente | `toSignal()`, `httpResource()` ou `async` no template |
-| `ngOnChanges` para reagir a input | `computed()` ou `effect()` sobre o signal de input |
-| campo mutavel + `markForCheck()` | `signal()` |
-| `ChangeDetectionStrategy.Default` | `OnPush` (obrigatorio; em PERFIL-ZL e o unico modo coerente) |
-| `any` | tipo explicito ou `unknown` com narrowing |
+| NgModule, declarations, imports de modulo | componente standalone; nao escreva a propriedade standalone, ela ja e o padrao |
+| decorator Input | funcao input, ou input.required quando obrigatorio |
+| decorator Output com EventEmitter | funcao output |
+| entrada mais saida para simular two-way | funcao model |
+| decorators ViewChild e ContentChild | funcoes viewChild, viewChildren, contentChild, contentChildren |
+| dependencia declarada no construtor | campo com inject, marcado como readonly |
+| diretivas estruturais com asterisco e ngSwitch | blocos embutidos de condicional, repeticao e selecao |
+| ngClass e ngStyle | binding de classe e de estilo, individual ou por objeto |
+| chamada de subscribe dentro de componente | conversao de observable para signal, recurso HTTP declarativo, ou pipe assincrono no template |
+| ngOnChanges para reagir a entrada | valor derivado com computed, ou efeito quando houver saida imperativa |
+| campo mutavel com marcacao manual de verificacao | signal |
+| estrategia de deteccao padrao | OnPush, obrigatorio; em PERFIL-ZL e o unico modo coerente |
+| tipo any | tipo explicito, ou unknown com estreitamento |
 
-## 2. Status das APIs (v21)
+## 2. Status das APIs na versao 21
 
-Estavel - use livremente:
-`signal`, `computed`, `effect`, `linkedSignal`, `input`, `output`, `model`, `viewChild`,
-`contentChild`, `inject`, `toSignal`, `toObservable`, controle de fluxo embutido,
-`@defer`, `afterNextRender`, `afterRenderEffect`, `provideZonelessChangeDetection`,
-`httpResource`.
+Estavel, use livremente: signal, computed, effect, linkedSignal, input, output, model,
+viewChild, contentChild, inject, conversao entre signal e observable nos dois sentidos,
+blocos embutidos de controle de fluxo, bloco de carregamento adiado, ganchos de pos
+renderizacao, provider de deteccao sem zona, e recurso HTTP declarativo.
 
-Developer preview - use apenas se o projeto ja usar, e sinalize no codigo:
-`Angular Aria`.
+Pre-visualizacao para desenvolvedores, use apenas se o projeto ja usar, e sinalize:
+biblioteca de primitivas acessiveis do Angular.
 
-Experimental - **nao use sem autorizacao explicita do usuario**:
-Signal Forms (`@angular/forms/signals`). A API pode mudar antes de estabilizar.
-Para formularios, mantenha Reactive Forms tipado ate que o time decida migrar.
+Experimental, nao use sem autorizacao explicita do usuario: formularios baseados em
+signals. A API pode mudar antes de estabilizar. Para formularios, mantenha a abordagem
+reativa tipada ate que o time decida migrar.
 
 Quando houver duvida sobre o status de uma API na versao exata do projeto, consulte o
-MCP server oficial (`ng mcp`) via `search_documentation`, que filtra pela versao do
-projeto. Nao chute com base em memoria.
+servidor MCP oficial do Angular, que filtra a documentacao pela versao instalada. Nao
+responda com base em memoria: a diferenca entre estavel e experimental muda a decisao.
 
 ## 3. Regras de reatividade
 
-1. `computed()` para qualquer valor derivado. Se voce escreveu um `effect()` cujo unico
-   trabalho e atribuir a outro signal, era `computed()` ou `linkedSignal()`.
-2. `effect()` so para saida do sistema reativo: log, storage, integracao imperativa com
-   API de terceiro, foco de DOM. **Nunca** para orquestrar fluxo de dados.
-3. Signal exposto por service e `readonly` para fora: guarde o `WritableSignal` privado e
-   exponha `.asReadonly()` ou um `computed()`.
-4. `linkedSignal()` quando o estado local precisa ser resetado por uma fonte externa.
-5. `untracked()` para ler sem criar dependencia. Se voce precisa dele com frequencia,
-   o desenho da reatividade esta errado.
+1. Use valor derivado para qualquer coisa calculavel a partir de outros signals. Se voce
+   escreveu um efeito cujo unico trabalho e atribuir a outro signal, era um valor derivado
+   ou um signal vinculado.
+2. Efeito serve apenas para saida do sistema reativo: log, armazenamento, integracao
+   imperativa com API de terceiro, foco de elemento. Nunca para orquestrar fluxo de dados.
+3. Signal exposto por service e somente leitura para fora. Guarde o signal gravavel como
+   privado e exponha a versao somente leitura ou um valor derivado.
+4. Use signal vinculado quando o estado local precisa ser reinicializado por uma fonte
+   externa, preservando a possibilidade de escrita local.
+5. Leitura sem criar dependencia existe, mas se voce precisa dela com frequencia o desenho
+   da reatividade esta errado. Trate como sinal de alerta, nao como ferramenta cotidiana.
 
 ## 4. Protocolo de migracao
 
-Ao modernizar codigo existente, **prefira o schematic oficial ao rewrite manual**:
-
-```
-ng generate @angular/core:control-flow
-ng generate @angular/core:signal-input-migration
-ng generate @angular/core:output-migration
-ng generate @angular/core:signal-queries-migration
-ng generate @angular/core:inject-migration
-ng generate @angular/core:standalone
-ng generate @angular/core:cleanup-unused-imports
-```
+Ao modernizar codigo existente, prefira o schematic oficial ao rewrite manual. Os
+disponiveis no pacote @angular/core cobrem: controle de fluxo em template, migracao de
+entradas para signal, migracao de saidas, migracao de consultas de view e de conteudo,
+migracao de injecao por construtor, conversao para standalone e limpeza de imports nao
+utilizados.
 
 O schematic e deterministico, cobre o repositorio inteiro e nao consome token. Rewrite
 manual arquivo a arquivo e mais caro e introduz erro. Reescreva a mao apenas o que o
-schematic nao cobre, e diga explicitamente o que foi manual.
+schematic nao cobre, e diga explicitamente o que foi feito manualmente.
 
-Para migracao a zoneless, o MCP oficial expoe `onpush_zoneless_migration`, que produz um
-plano por componente. Use-o antes de propor a migracao.
+Para migracao a zoneless, o servidor MCP oficial expoe uma ferramenta que produz um plano
+por componente. Use-a antes de propor a migracao, em vez de estimar o esforco no olho.
 
-## 5. Erros que o modelo comete com frequencia
+## 5. Erros frequentes
 
-Leia `references/api-map.md` antes de gerar componente ou template. Contem o mapa
-legado -> moderno com codigo dos dois lados e as armadilhas de `@for`, `input.required`,
-`effect` em contexto de injecao e `httpResource`.
+Leia `references/api-map.md` antes de gerar componente ou template. Ele contem o mapa
+legado para moderno, simbolo a simbolo, e as armadilhas de repeticao com rastreio, de
+entrada obrigatoria, de contexto de injecao e de recurso HTTP declarativo.
 
 ## 6. Auto-verificacao antes de responder
 
-- [ ] Declarei o perfil (PERFIL-Z ou PERFIL-ZL)?
-- [ ] Zero ocorrencias de `*ngIf`, `*ngFor`, `ngClass`, `ngStyle`, `NgModule`, `@Input`, `@Output`?
-- [ ] Todo `@for` tem `track`?
-- [ ] Todo componente tem `changeDetection: OnPush`?
-- [ ] Nenhum `subscribe()` em componente?
-- [ ] Nenhum `effect()` que so escreve em outro signal?
-- [ ] Nenhuma API experimental usada sem autorizacao?
+- Declarei o perfil, PERFIL-Z ou PERFIL-ZL?
+- Zero ocorrencias de diretiva estrutural com asterisco, ngClass, ngStyle, NgModule e
+  decorators de entrada ou saida?
+- Toda repeticao declara a expressao de rastreio?
+- Todo componente usa deteccao OnPush?
+- Nenhuma chamada de subscribe dentro de componente?
+- Nenhum efeito cujo unico trabalho e escrever em outro signal?
+- Nenhuma API experimental usada sem autorizacao?
