@@ -43,3 +43,34 @@ O critério do enunciado se confirma nos dados: o sistêmico aqui é _mecânico_
 5. **Dividas — extrair `entityParaGrupoView`/`entityParaView`/`viewParaEntity`/`ondeRenegociar` do `DividasMapper` para um mapper/adapter de apresentação na feature.** Independente dos passos 1–4, pode rodar em paralelo, mas fica por último na priorização porque é achado pontual: reduz acoplamento só dentro de 1 cadeia, não fecha um padrão repetido nem mitiga risco financeiro.
 
 **Grátis, fazer em paralelo com qualquer passo acima** (diff zero-risco, sem depender de nada): deletar `core/services/api/conclusao.service.ts`, `enum-utils.service.ts` e `negociacao.entity.ts` (mortos, confirmados por `usages`), e corrigir a Seção 3 do mapa (vários "órfãos" listados estão ativos).
+
+> [!IMPORTANTE] Spec de Refatoração:
+
+Antes da tabela, uma correção que essa própria pergunta expôs: no passo 3, eu tinha desenhado `confirmacao.mapper.ts` importando `MetodoFormaPagamentoSelecionado` de `confirmacao-feature.service.ts`, e o feature service importando `ConfirmacaoMapper` de volta — **dependência circular entre os dois arquivos novos**. Correção: `ConfirmacaoDadosResolvidos.pagamentoAtivo` no mapper passa a usar um shape estrutural próprio (`{ conta: ContaEntity; metodoPagamento: TipoMetodoPagamento | null }` inline, sem importar `MetodoFormaPagamentoSelecionado`), então o mapper não depende do feature service — só o inverso. Isso é o que a tabela abaixo já reflete.
+
+| #   | arquivo                                                      | ação    | camada  | passo | depende de         |
+| --- | ------------------------------------------------------------ | ------- | ------- | ----- | ------------------ |
+| 1   | cliente.mapper.ts                                            | ALTERAR | domain  | 1     | —                  |
+| 2   | renegociacao.store.ts                                        | ALTERAR | feature | 1     | #1                 |
+| 3   | cliente-atualizacao-request.dto.ts                           | ALTERAR | domain  | 1     | #2                 |
+| 4   | ofertas.mapper.ts                                            | ALTERAR | domain  | 2     | —                  |
+| 5   | renegociacao.store.ts                                        | ALTERAR | feature | 2     | #4                 |
+| 6   | oferta-predefinida-request.dto.ts                            | ALTERAR | domain  | 2     | #5                 |
+| 7   | oferta-personalizada-request.dto.ts                          | ALTERAR | domain  | 2     | #5                 |
+| 8   | src/app/mappers/confirmacao.mapper.ts                        | CRIAR   | domain  | 3     | —                  |
+| 9   | src/app/features/confirmacao/confirmacao-feature.service.ts  | CRIAR   | feature | 3     | #8                 |
+| 10  | renegociacao.store.ts                                        | ALTERAR | feature | 3     | #8, #9             |
+| 11  | confirmacao-request.dto.ts                                   | ALTERAR | domain  | 3     | #10                |
+| 12  | src/app/models/dto/confirmacao-response.dto.ts               | CRIAR   | domain  | 4     | —                  |
+| 13  | confirmacao.service.ts                                       | ALTERAR | core    | 4     | #12                |
+| 14  | src/app/features/confirmacao/confirmacao-feature.service.ts  | ALTERAR | feature | 4     | #12                |
+| 15  | renegociacao.store.ts                                        | ALTERAR | feature | 4     | #13, #14           |
+| 16  | src/app/features/dividas/dividas-apresentacao.mapper.ts      | CRIAR   | feature | 5     | —                  |
+| 17  | src/app/features/dividas/dividas-apresentacao.mapper.spec.ts | CRIAR   | feature | 5     | #16                |
+| 18  | dividas.service.ts                                           | ALTERAR | feature | 5     | #16                |
+| 19  | dividas.component.ts                                         | ALTERAR | feature | 5     | #16                |
+| 20  | dividas.service.spec.ts                                      | ALTERAR | feature | 5     | #18                |
+| 21  | dividas.mapper.spec.ts                                       | ALTERAR | domain  | 5     | #17, #18, #19      |
+| 22  | dividas.mapper.ts                                            | ALTERAR | domain  | 5     | #18, #19, #20, #21 |
+
+Regra que gerou a ordem dentro de cada passo: **criar/adicionar método → trocar quem chama → só então apagar a origem**. Nunca apagar uma função/tipo antes de zerar seus chamadores, nem trocar um chamador antes do destino existir — é isso que faz cada linha compilar isoladamente, mesmo que o commit seja aplicado parado nela.
