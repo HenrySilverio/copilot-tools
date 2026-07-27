@@ -1,0 +1,66 @@
+<section
+  class="bsc-footer brad-card brad-border-hairline brad-border-color-neutral-20 brad-p-xxl brad-bg-color-neutral-05"
+  [class.bsc-footer--so-voltar]="variant() === 'so-voltar'">
+  @switch (variant()) {
+    @case ('fluxo') {
+      <div class="brad-flex brad-flex-row brad-flex-justify-content-between brad-flex-align-items-center">
+        <button type="button" class="brad-btn brad-btn-text brad-btn--auto" data-testid="tertiary-button"
+          [disabled]="tertiaryDisabled()" (click)="tertiaryClick.emit()">
+          {{ tertiaryLabel() }}
+        </button>
+        <button type="button" class="brad-btn brad-btn-primary brad-btn--auto" data-testid="primary-button"
+          [disabled]="primaryDisabled()" (click)="primaryClick.emit()">
+          {{ primaryLabel() }}
+        </button>
+      </div>
+    }
+    @case ('fluxo-2') {
+      <div class="brad-flex brad-flex-row brad-flex-justify-content-between brad-flex-align-items-center">
+        <button type="button" class="brad-btn brad-btn-text brad-btn--auto" data-testid="tertiary-button"
+          [disabled]="tertiaryDisabled()" (click)="tertiaryClick.emit()">
+          {{ tertiaryLabel() }}
+        </button>
+        <div class="brad-flex brad-flex-row brad-gap-xxl">
+          <button type="button" class="brad-btn brad-btn-secondary brad-btn--auto" data-testid="secondary-button"
+            [disabled]="secondaryDisabled()" (click)="secondaryClick.emit()">
+            {{ secondaryLabel() }}
+          </button>
+          <button type="button" class="brad-btn brad-btn-primary brad-btn--auto" data-testid="primary-button"
+            [disabled]="primaryDisabled()" (click)="primaryClick.emit()">
+            {{ primaryLabel() }}
+          </button>
+        </div>
+      </div>
+    }
+    @case ('fluxo-2-sem-primario') {
+      <div class="brad-flex brad-flex-row brad-flex-justify-content-between brad-flex-align-items-center">
+        <button type="button" class="brad-btn brad-btn-text brad-btn--auto" data-testid="tertiary-button"
+          [disabled]="tertiaryDisabled()" (click)="tertiaryClick.emit()">
+          {{ tertiaryLabel() }}
+        </button>
+        <button type="button" class="brad-btn brad-btn-secondary brad-btn--auto" data-testid="secondary-button"
+          [disabled]="secondaryDisabled()" (click)="secondaryClick.emit()">
+          {{ secondaryLabel() }}
+        </button>
+      </div>
+    }
+    @case ('so-voltar') {
+      <button type="button" class="brad-btn brad-btn-secondary brad-btn--auto" data-testid="secondary-button"
+        [disabled]="secondaryDisabled()" (click)="secondaryClick.emit()">
+        {{ secondaryLabel() }}
+      </button>
+    }
+    @case ('subhome') {
+      <div class="brad-flex brad-flex-row brad-flex-justify-content-end brad-flex-align-items-center brad-gap-xxl">
+        <div class="brad-flex brad-flex-column brad-flex-align-items-end">
+          <span class="brad-font-paragraph-sm brad-text-color-neutral-50">{{ quantityText() }}</span>
+          <span class="brad-font-title-lg">{{ valueText() }}</span>
+        </div>
+        <button type="button" class="brad-btn brad-btn-primary brad-btn--auto" data-testid="primary-button"
+          [disabled]="primaryDisabled()" (click)="primaryClick.emit()">
+          {{ primaryLabel() }}
+        </button>
+      </div>
+    }
+  }
+</section>

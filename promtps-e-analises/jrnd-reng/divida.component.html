@@ -1,0 +1,130 @@
+<section class="brad-m-lg-t brad-m-xxl-t brad-m-lg-b">
+  <p class="brad-font-title-xl">
+    Renegociação de dívidas
+  </p>
+</section>
+<div class="brad-flex brad-flex-column brad-gap-xxl">
+
+  <brad-card brad-type="default"
+    class="brad-flex brad-relative-full-w brad-bg-color-neutral-05 brad-shadow-0 brad-border-color-neutral-20">
+    <div
+      class="brad-m-xl brad-flex brad-flex-column brad-flex-justify-content-between brad-relative-full-w brad-gap-xxl">
+      <div class="brad-flex brad-gap-sm">
+        <em class="brad-flex-align-self-center icon-contact-contact brad-icon-size-sm"></em>
+        <span class="brad-flex-align-self-center brad-font-title-lg">Dados do cliente</span>
+      </div>
+      <div class="brad-flex brad-flex-row brad-flex-justify-content-start brad-flex-align-self-stretch"
+        style="gap: 48px;">
+        <div class="brad-flex brad-flex-column">
+          <div class="brad-font-paragraph-sm brad-m-xs-b brad-text-color-neutral-50">
+            Nome
+          </div>
+          <div class="brad-font-paragraph-sm brad-text-color-neutral-100">
+            {{ renegociacaoStore.cliente().dadosPessoais.nome }}
+          </div>
+        </div>
+        <div class="brad-flex brad-flex-column">
+          <div class="brad-font-paragraph-sm brad-m-xs-b brad-text-color-neutral-50">
+            {{ renegociacaoStore.cliente().dadosPessoais.tipoDocumento.toUpperCase() }}
+          </div>
+          <div class="brad-font-paragraph-sm brad-text-color-neutral-100">
+            {{ renegociacaoStore.cliente().dadosPessoais.documento | documento }}
+          </div>
+        </div>
+        <div class="brad-flex brad-flex-column">
+          <div class="brad-font-paragraph-sm brad-m-xs-b brad-text-color-neutral-50">
+            Telefone
+          </div>
+          <div class="brad-font-paragraph-sm brad-text-color-neutral-100">
+            {{(renegociacaoStore.cliente().dadosPessoais.telefone?.ddd ?? '') + 
+              (renegociacaoStore.cliente().dadosPessoais.telefone?.numero ?? '') | telefone }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </brad-card>
+
+  <brad-card brad-type="default" class="brad-flex brad-shadow-0 brad-bg-color-neutral-05 brad-border-color-neutral-20">
+    <div class="brad-m-xl brad-relative-full-w">
+      <brad-tabs id="tabs-dividas" brad-on-color="false" brad-indicator="bottom" class="brad-flex brad-flex-column">
+        <brad-tab-list aria-labelledby="tab-divida" class="brad-scrollbar">
+          <brad-tab aria-controls="tabpanel-produto" class="brad-tab__focus--js"
+            brad-icon="icon-extrato-cesta-servicos">
+            Produtos de crédito
+          </brad-tab>
+          <brad-tab aria-controls="tabpanel-cartao" class="brad-tab__focus--js" brad-icon="icon-cartao-debito-credito">
+            Cartões
+          </brad-tab>
+        </brad-tab-list>
+        <brad-tab-panels>
+          <brad-tab-panel id="tabpanel-produto" class="brad-bg-color-neutral-05">
+            <div class="brad-flex brad-flex-column brad-gap-xxl">
+              <div class="brad-flex brad-flex-column brad-gap-xs brad-m-xl-t">
+                <div>
+                  <span class="brad-font-title-lg">
+                    Dívidas de produtos de crédito pra renegociar
+                  </span>
+                </div>
+                <span class="brad-p-xs-t brad-font-paragraph-sm brad-text-color-neutral-40">
+                  É possível renegociar mais de uma dívida por vez, se elas forem da
+                  mesma agência. <br />
+                  Se forem de agências diferentes, é preciso fazer
+                  mais de uma renegociação.
+                </span>
+              </div>
+            </div>
+            @if (showDividaBanco()) {
+              <app-tabela-contratos [selecionavel]="true" [grupoDividas]="grupoDividasBanco"
+                (contratosSelecionados)="selectedContratos($event)">
+              </app-tabela-contratos>
+            }
+          </brad-tab-panel>
+
+          <brad-tab-panel id="tabpanel-cartao" class="brad-tabs__is-hidden--js brad-bg-color-neutral-05">
+            <div class="brad-flex brad-flex-column brad-gap-xxl">
+              <div class="brad-flex brad-flex-column brad-gap-xs brad-m-xl-t">
+                <div>
+                  <span class="brad-font-title-lg">
+                    Dívidas de cartões pra renegociar
+                  </span>
+                </div>
+                <span class="brad-p-xs-t brad-font-paragraph-sm brad-text-color-neutral-40">
+                  É possível renegociar mais de uma dívida por vez, se elas forem da
+                  mesma agência. <br />
+                  Se forem de agências diferentes, é preciso fazer
+                  mais de uma renegociação.
+                </span>
+              </div>
+            </div>
+            @if (showDividaCartao()) {
+              <app-tabela-contratos [selecionavel]="true" [grupoDividas]="grupoDividasCartao"
+                (contratosSelecionados)="selectedContratos($event)">
+              </app-tabela-contratos>
+            }
+          </brad-tab-panel>
+        </brad-tab-panels>
+      </brad-tabs>
+    </div>
+  </brad-card>
+
+  <bsc-footer variant="subhome" [quantityText]="textoQuantidadeDividas()"
+    [valueText]="renegociacaoStore.valorTotalContratos() | moeda"
+    [primaryDisabled]="renegociacaoStore.contratosSelecionados().length < 1"
+    (primaryClick)="abrirModalInclusaoGarantia()"></bsc-footer>
+
+  <div id="modalDialogGarantia" class="brad-modal brad-modal--dialog brad-modal--dialog__md brad-modal--dialog--center"
+    role="dialog" aria-modal="true" tabindex="-1">
+    <div class="brad-modal__dialog__content brad-p-lg">
+      <p>O cliente quer adicionar uma ou mais garantias nesta renegociação?</p>
+    </div>
+    <div
+      class="brad-modal__dialog__footer brad-flex brad-flex-row brad-flex-justify-content-end brad-flex-align-items-center">
+      <button class="brad-btn brad-btn-text brad-btn--auto brad-m-md-r" (click)="abrirOfertas()">
+        Não
+      </button>
+      <button class="brad-btn brad-btn-primary brad-btn--auto" (click)="abrirGarantias()">
+        Sim, adicionar
+      </button>
+    </div>
+  </div>
+</div>
