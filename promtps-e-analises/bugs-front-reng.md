@@ -2,6 +2,16 @@
 
 Mantenha **Claude Sonnet 5, mesma sessão, reasoning effort baixo** (o que já está selecionado no seu print). Trocar de modelo ou subir o esforço de raciocínio pra rodar compactação é gasto de token sem retorno — é resumo mecânico guiado por instrução explícita, não trabalho de julgamento. Rode o `/compact` com a instrução de preservação que já te passei antes de fechar essa janela.
 
+```
+/compact Preserve estes fatos literalmente, não parafraseie:
+- Root cause: brad-btn (Liquid) default full-width; fix = classe brad-btn--auto
+  em todos os botões do bsc-footer
+- Convenção já usada em dividas.component.html:130 (modais)
+- Todos os 11 testes de bsc-footer passam; nenhum data-testid foi alterado
+- federation.config.js deste projeto (recr-fed-agc-jrnd-reneg) usa
+  shareAll({singleton:true}) — Angular COMPARTILHADO com o shell, não isolado
+```
+
 ## 2. Próximos passos — e por que são 3 janelas, não 2
 
 Com os arquivos reais em mãos, o quadro mudou: itens 2 e 4 já têm causa raiz confirmada por análise estática (`app.component.scss` não tem `flex-column`/`margin-top:auto`, `max-width:1016px` é global no `.app-shell`). O item 3 não tem causa raiz ainda — falta um arquivo crítico que você não me mandou: **`bootstrap-webcomponent.ts`**. É ele que decide como o Angular Elements bootstrapa o custom element, e é a peça que explica se o `style.scss` do footer está de fato sendo injetado no `<head>` do shell ou não. Sem isso, qualquer spec pro item 3 seria chute.
