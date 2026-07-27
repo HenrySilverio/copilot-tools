@@ -30,7 +30,13 @@ const SOURCES = [
 ];
 
 async function fetchText(url) {
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    headers: {
+      'User-Agent':
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36',
+      Accept: 'text/css,*/*;q=0.1',
+    },
+  });
   if (!res.ok) throw new Error(`Falha ao buscar ${url}: ${res.status}`);
   return res.text();
 }
@@ -133,5 +139,16 @@ async function main() {
 
 main().catch((err) => {
   console.error('Erro:', err.message);
+  if (err.cause) {
+    console.error('Causa raiz:', err.cause.code ?? err.cause.message ?? err.cause);
+  }
+  console.error('');
+  console.error('"fetch failed" sem causa clara costuma ser um destes três, nessa ordem de probabilidade em rede corporativa:');
+  console.error('  1. Proxy/inspeção TLS corporativa: o Node não confia na CA raiz que o Windows/browser confia.');
+  console.error('     Teste: node --use-openssl-ca ... ou defina NODE_EXTRA_CA_CERTS apontando pro certificado da sua empresa.');
+  console.error('  2. Variável de proxy (HTTP_PROXY/HTTPS_PROXY) configurada só no browser/SO, não visível pro processo Node.');
+  console.error('     Teste: echo %HTTPS_PROXY% no mesmo terminal onde rodou o script.');
+  console.error('  3. VPN split-tunneling bloqueando o processo Node especificamente.');
+  console.error('Sanity check rápido pra isolar a causa: curl -v <url> no mesmo terminal — se curl também falhar, é rede/proxy, não o script.');
   process.exit(1);
 });
