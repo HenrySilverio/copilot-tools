@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 /**
  * Extrai todas as classes CSS dos bundles Liquid e gera um índice categorizado.
- * Uso: node scripts/extract-liquid-classes.mjs [versao]
- * Ex.:  node scripts/extract-liquid-classes.mjs 3.1.0
+ * Uso: node scripts/extract-liquid-classes.mjs [versao] [--out=<diretorio>]
+ * Ex.:  node scripts/extract-liquid-classes.mjs 3.1.0 --out=../liquid-catalog
+ *
+ * O diretório de saída é criado automaticamente se não existir. Sem --out,
+ * escreve no diretório atual (cwd).
  *
  * Saída:
  *   liquid-classes-index.json   -> índice completo, agrupado por prefixo (uso: consulta pontual, NUNCA carregar inteiro no Copilot)
@@ -16,7 +19,10 @@
  * Trate o índice como ponto de partida para busca, não como contrato formal do design system.
  */
 
-const VERSION = process.argv[2] ?? '3.1.0';
+const args = process.argv.slice(2).filter((a) => !a.startsWith('--out='));
+const outArg = process.argv.find((a) => a.startsWith('--out='));
+const VERSION = args[0] ?? '3.1.0';
+const OUT_DIR = outArg ? outArg.replace('--out=', '') : '.';
 const BASE = `https://static.bradesco.com.br/dsysliquid/dist/design-system-${VERSION}`;
 const SOURCES = [
   { name: 'reset', url: `${BASE}/reset.bundle.min.css` },
@@ -101,7 +107,9 @@ async function main() {
   };
 
   const fs = await import('node:fs/promises');
-  await fs.writeFile('liquid-classes-index.json', JSON.stringify(index, null, 2));
+  const path = await import('node:path');
+  await fs.mkdir(OUT_DIR, { recursive: true });
+  await fs.writeFile(path.join(OUT_DIR, 'liquid-classes-index.json'), JSON.stringify(index, null, 2));
 
   const summaryLines = [
     `# Índice de classes Liquid (v${VERSION})`,
@@ -117,10 +125,10 @@ async function main() {
     'Para consultar classes de um grupo específico, use: `node scripts/query-liquid-classes.mjs <termo>`',
     'Não abra o `liquid-classes-index.json` inteiro no editor/contexto do Copilot — ele é grande por natureza (design system atômico). Consulte por termo.',
   ];
-  await fs.writeFile('liquid-classes-summary.md', summaryLines.join('\n'));
+  await fs.writeFile(path.join(OUT_DIR, 'liquid-classes-summary.md'), summaryLines.join('\n'));
 
   console.error(`OK: ${sorted.length} classes em ${Object.keys(groups).length} grupos.`);
-  console.error('Gerado: liquid-classes-index.json (consulta) e liquid-classes-summary.md (visão geral, leve).');
+  console.error(`Gerado em ${OUT_DIR}/: liquid-classes-index.json (consulta) e liquid-classes-summary.md (visão geral, leve).`);
 }
 
 main().catch((err) => {

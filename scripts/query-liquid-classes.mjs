@@ -1,29 +1,32 @@
 #!/usr/bin/env node
 /**
  * Consulta pontual ao índice de classes Liquid — gerado por extract-liquid-classes.mjs.
- * Uso: node scripts/query-liquid-classes.mjs <termo> [--group]
+ * Uso: node scripts/query-liquid-classes.mjs <termo> [--group] [--dir=<diretorio>]
  *
  * Objetivo: dar ao Copilot Chat/CLI uma forma de buscar classes SEM carregar
  * o liquid-classes-index.json inteiro no contexto. Só o resultado filtrado
  * é impresso no stdout — é isso que deve ser lido, não o arquivo fonte.
  *
  * Ex.:
- *   node scripts/query-liquid-classes.mjs btn         -> todas as classes que contêm "btn"
- *   node scripts/query-liquid-classes.mjs card --group -> lista os grupos que contêm "card" (sem expandir classes)
+ *   node scripts/query-liquid-classes.mjs btn --dir=../liquid-catalog  -> classes que contêm "btn"
+ *   node scripts/query-liquid-classes.mjs card --group                -> só os grupos que contêm "card"
  */
 
 import { readFile } from 'node:fs/promises';
+import path from 'node:path';
 
 const term = process.argv[2];
 const groupOnly = process.argv.includes('--group');
+const dirArg = process.argv.find((a) => a.startsWith('--dir='));
+const DIR = dirArg ? dirArg.replace('--dir=', '') : '.';
 
 if (!term) {
-  console.error('Uso: node scripts/query-liquid-classes.mjs <termo> [--group]');
+  console.error('Uso: node scripts/query-liquid-classes.mjs <termo> [--group] [--dir=<diretorio>]');
   process.exit(1);
 }
 
 async function main() {
-  const raw = await readFile('liquid-classes-index.json', 'utf-8');
+  const raw = await readFile(path.join(DIR, 'liquid-classes-index.json'), 'utf-8');
   const index = JSON.parse(raw);
   const needle = term.toLowerCase();
 
