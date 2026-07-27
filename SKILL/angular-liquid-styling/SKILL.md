@@ -61,6 +61,8 @@ Para bug visual: peça para o Copilot inspecionar encapsulation mode, presença 
 
 `scripts/extract-liquid-classes.mjs` baixa os bundles CSS e gera o índice num diretório de saída (criado automaticamente, não precisa existir antes): `node scripts/extract-liquid-classes.mjs 3.1.0 --out=../../liquid-catalog`, a partir de `skills/angular-liquid-styling/`. Gera `liquid-classes-index.json` (índice completo) + `liquid-classes-summary.md` (só grupos e contagem) dentro de `liquid-catalog/`. Rode uma vez por versão do Liquid, fora do fluxo do Copilot (é operação de rede, não de raciocínio) — esse diretório de saída fica fora da pasta da skill porque é dado específico do projeto/versão, não da ferramenta.
 
+O script detecta `HTTP_PROXY`/`HTTPS_PROXY` no ambiente e monta o túnel `CONNECT` sozinho, usando só `http`/`https`/`tls` nativos do Node — zero dependência nova, roda igual em qualquer repo sem `npm install` e sem aparecer no scan do Mend. Isso existe porque o `fetch` nativo do Node não respeita essas variáveis (diferente do `curl`), e o objetivo é não precisar instalar nada por projeto pra distribuir isso pro time inteiro.
+
 Para consultar, use sempre `scripts/query-liquid-classes.mjs <termo> --dir=../../liquid-catalog` via terminal — o Copilot deve ler a saída filtrada do comando, nunca abrir o `liquid-classes-index.json` inteiro. Um design system atômico tende a ter milhares de classes; carregar o índice inteiro no contexto é o mesmo erro que o `bff-contract` evita com o OpenAPI monolítico.
 
 Antes de escrever SCSS novo para um padrão visual, rode a consulta pelo termo do componente (ex.: `btn`, `input`, `card`) e confirme que a classe não existe antes de assumir que precisa criar.

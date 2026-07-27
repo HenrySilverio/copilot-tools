@@ -29,33 +29,96 @@ const SOURCES = [
   { name: 'design-system', url: `${BASE}/design-system.bundle.min.css` },
 ];
 
-// Node's global fetch NÃO respeita HTTP_PROXY/HTTPS_PROXY automaticamente
-// (diferente de curl). Em rede corporativa com proxy obrigatório, isso causa
-// UND_ERR_CONNECT_TIMEOUT mesmo com as variáveis de ambiente corretas.
-// Usa undici.EnvHttpProxyAgent quando disponível, que lê essas variáveis
-// e replica o comportamento do curl. Requer `npm install undici --save-dev`.
-async function setupProxyIfNeeded() {
-  const hasProxyEnv =
-    process.env.HTTP_PROXY || process.env.HTTPS_PROXY || process.env.http_proxy || process.env.https_proxy;
-  if (!hasProxyEnv) return;
-  try {
-    const { EnvHttpProxyAgent, setGlobalDispatcher } = await import('undici');
-    setGlobalDispatcher(new EnvHttpProxyAgent());
-    console.error('Proxy detectado no ambiente — roteando fetch via undici.EnvHttpProxyAgent.');
-  } catch {
-    console.error('');
-    console.error('AVISO: HTTP_PROXY/HTTPS_PROXY estão setados no ambiente, mas o pacote "undici" não está instalado.');
-    console.error('Sem ele, o fetch do Node tenta conectar direto (ignorando o proxy) e trava com UND_ERR_CONNECT_TIMEOUT.');
-    console.error('Rode: npm install undici --save-dev  (uma vez, na raiz do projeto) e execute o script de novo.');
-    process.exit(1);
-  }
+import http from 'node:http';
+import https from 'node:https';
+import tls from 'node:tls';
+
+const USER_AGENT =
+  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36';
+
+function getProxyUrl() {
+  return (
+    process.env.HTTPS_PROXY ||
+    process.env.https_proxy ||
+    process.env.HTTP_PROXY ||
+    process.env.http_proxy ||
+    null
+  );
+}
+
+/**
+ * Busca uma URL HTTPS através de um proxy corporativo, via túnel CONNECT manual.
+ * Zero dependências externas — só http/https/tls nativos do Node. Isso existe porque
+ * o fetch nativo do Node NÃO respeita HTTP_PROXY/HTTPS_PROXY (diferente de curl), e
+ * adicionar um pacote (ex.: undici com EnvHttpProxyAgent) significaria instalar e manter
+ * essa dependência em cada repo do harness, além de aparecer no scan do Mend à toa.
+ */
+function fetchThroughProxy(targetUrl, proxyUrlStr) {
+  return new Promise((resolve, reject) => {
+    const target = new URL(targetUrl);
+    const proxy = new URL(proxyUrlStr);
+
+    const connectReq = http.request({
+      host: proxy.hostname,
+      port: proxy.port || 80,
+      method: 'CONNECT',
+      path: `${target.hostname}:${target.port || 443}`,
+      headers: { Host: `${target.hostname}:${target.port || 443}` },
+      timeout: 15000,
+    });
+
+    connectReq.on('connect', (proxyRes, socket) => {
+      if (proxyRes.statusCode !== 200) {
+        socket.destroy();
+        reject(new Error(`Proxy recusou o túnel CONNECT: HTTP ${proxyRes.statusCode}`));
+        return;
+      }
+
+      const tlsSocket = tls.connect({ socket, servername: target.hostname }, () => {
+        const req = https.request(
+          {
+            method: 'GET',
+            hostname: target.hostname,
+            path: target.pathname + target.search,
+            headers: {
+              Host: target.hostname,
+              'User-Agent': USER_AGENT,
+              Accept: 'text/css,*/*;q=0.1',
+            },
+            createConnection: () => tlsSocket,
+          },
+          (response) => {
+            if (response.statusCode !== 200) {
+              response.resume();
+              reject(new Error(`Falha ao buscar ${targetUrl}: ${response.statusCode}`));
+              return;
+            }
+            const chunks = [];
+            response.on('data', (c) => chunks.push(c));
+            response.on('end', () => resolve(Buffer.concat(chunks).toString('utf-8')));
+            response.on('error', reject);
+          }
+        );
+        req.on('error', reject);
+        req.end();
+      });
+      tlsSocket.on('error', reject);
+    });
+
+    connectReq.on('timeout', () => connectReq.destroy(new Error('Timeout ao conectar no proxy')));
+    connectReq.on('error', reject);
+    connectReq.end();
+  });
 }
 
 async function fetchText(url) {
+  const proxyUrl = getProxyUrl();
+  if (proxyUrl) {
+    return fetchThroughProxy(url, proxyUrl);
+  }
   const res = await fetch(url, {
     headers: {
-      'User-Agent':
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36',
+      'User-Agent': USER_AGENT,
       Accept: 'text/css,*/*;q=0.1',
     },
   });
@@ -109,7 +172,6 @@ function groupByPrefix(classNames, prefixDepth = 2) {
 }
 
 async function main() {
-  await setupProxyIfNeeded();
   const allClasses = new Set();
   const perSource = {};
 
@@ -165,11 +227,11 @@ main().catch((err) => {
   if (err.cause) {
     console.error('Causa raiz:', err.cause.code ?? err.cause.message ?? err.cause);
   }
-  if (err.cause?.code === 'UND_ERR_CONNECT_TIMEOUT') {
+  if (err.cause?.code === 'UND_ERR_CONNECT_TIMEOUT' || err.message.includes('CONNECT')) {
     console.error('');
-    console.error('Timeout de conexão mesmo com proxy configurado. Sanity check: curl -v <url> no mesmo terminal —');
-    console.error('se curl funcionar mas o script não, confirme que "undici" está instalado (npm install undici --save-dev)');
-    console.error('e que HTTP_PROXY/HTTPS_PROXY estão no ambiente onde o Node roda (não só num terminal diferente).');
+    console.error('Falha relacionada a proxy/túnel CONNECT. Sanity check: curl -v <url> no mesmo terminal —');
+    console.error('se curl funcionar mas o script não, confirme HTTP_PROXY/HTTPS_PROXY no ambiente onde o Node roda');
+    console.error('(não só num terminal diferente) e se o proxy exige autenticação (usuário:senha na URL do proxy).');
   }
   process.exit(1);
 });
