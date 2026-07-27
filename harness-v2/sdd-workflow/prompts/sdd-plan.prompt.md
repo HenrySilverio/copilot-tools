@@ -1,5 +1,7 @@
 ---
-mode: agent
+agent: agent
+model: Claude Sonnet 5 (copilot)
+tools: ['read/readFile', 'search', 'edit/creatFile']
 description: SDD - transforma um briefing em proposta, criterios de aceite e tarefas dentro de .sdd/changes/.
 ---
 

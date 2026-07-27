@@ -1,5 +1,11 @@
 ---
-mode: agent
+agent: agent
+# Haiku aqui e boa escolha: auditoria e leitura estruturada, nao precisa do modelo caro.
+model: Claude Haiku 4.5 (copilot)
+# Aqui a busca de codebase E o trabalho: encontrar o codigo e o teste que cobrem cada
+# criterio. Por isso 'search' fica, ao contrario de plan e implement. Sem escrita.
+# CONFIRMAR a grafia de 'search' e 'readFile' na sua versao.
+tools: ['readFile', 'search']
 description: SDD - audita a implementacao contra os criterios de aceite da propria mudanca. Somente leitura.
 ---
 
@@ -29,6 +35,9 @@ codigo que implementa o comportamento e o teste automatizado que o cobre. Classi
 | PARCIAL | existe codigo, mas nenhum teste afirma nada sobre aquela condicao |
 | AUSENTE | nao existe codigo, ou nao existe teste algum |
 | DIVERGENTE | o codigo faz algo diferente do que a condicao descreve |
+
+Busque de forma dirigida: procure pelo comportamento de cada criterio, nao varra o
+repositorio inteiro. Pare de buscar assim que localizar a evidencia daquela condicao.
 
 ## Passo 2 - Higiene
 
