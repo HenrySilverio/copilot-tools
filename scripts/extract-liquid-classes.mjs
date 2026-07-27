@@ -29,6 +29,28 @@ const SOURCES = [
   { name: 'design-system', url: `${BASE}/design-system.bundle.min.css` },
 ];
 
+// Node's global fetch NÃO respeita HTTP_PROXY/HTTPS_PROXY automaticamente
+// (diferente de curl). Em rede corporativa com proxy obrigatório, isso causa
+// UND_ERR_CONNECT_TIMEOUT mesmo com as variáveis de ambiente corretas.
+// Usa undici.EnvHttpProxyAgent quando disponível, que lê essas variáveis
+// e replica o comportamento do curl. Requer `npm install undici --save-dev`.
+async function setupProxyIfNeeded() {
+  const hasProxyEnv =
+    process.env.HTTP_PROXY || process.env.HTTPS_PROXY || process.env.http_proxy || process.env.https_proxy;
+  if (!hasProxyEnv) return;
+  try {
+    const { EnvHttpProxyAgent, setGlobalDispatcher } = await import('undici');
+    setGlobalDispatcher(new EnvHttpProxyAgent());
+    console.error('Proxy detectado no ambiente — roteando fetch via undici.EnvHttpProxyAgent.');
+  } catch {
+    console.error('');
+    console.error('AVISO: HTTP_PROXY/HTTPS_PROXY estão setados no ambiente, mas o pacote "undici" não está instalado.');
+    console.error('Sem ele, o fetch do Node tenta conectar direto (ignorando o proxy) e trava com UND_ERR_CONNECT_TIMEOUT.');
+    console.error('Rode: npm install undici --save-dev  (uma vez, na raiz do projeto) e execute o script de novo.');
+    process.exit(1);
+  }
+}
+
 async function fetchText(url) {
   const res = await fetch(url, {
     headers: {
@@ -87,6 +109,7 @@ function groupByPrefix(classNames, prefixDepth = 2) {
 }
 
 async function main() {
+  await setupProxyIfNeeded();
   const allClasses = new Set();
   const perSource = {};
 
@@ -142,13 +165,11 @@ main().catch((err) => {
   if (err.cause) {
     console.error('Causa raiz:', err.cause.code ?? err.cause.message ?? err.cause);
   }
-  console.error('');
-  console.error('"fetch failed" sem causa clara costuma ser um destes três, nessa ordem de probabilidade em rede corporativa:');
-  console.error('  1. Proxy/inspeção TLS corporativa: o Node não confia na CA raiz que o Windows/browser confia.');
-  console.error('     Teste: node --use-openssl-ca ... ou defina NODE_EXTRA_CA_CERTS apontando pro certificado da sua empresa.');
-  console.error('  2. Variável de proxy (HTTP_PROXY/HTTPS_PROXY) configurada só no browser/SO, não visível pro processo Node.');
-  console.error('     Teste: echo %HTTPS_PROXY% no mesmo terminal onde rodou o script.');
-  console.error('  3. VPN split-tunneling bloqueando o processo Node especificamente.');
-  console.error('Sanity check rápido pra isolar a causa: curl -v <url> no mesmo terminal — se curl também falhar, é rede/proxy, não o script.');
+  if (err.cause?.code === 'UND_ERR_CONNECT_TIMEOUT') {
+    console.error('');
+    console.error('Timeout de conexão mesmo com proxy configurado. Sanity check: curl -v <url> no mesmo terminal —');
+    console.error('se curl funcionar mas o script não, confirme que "undici" está instalado (npm install undici --save-dev)');
+    console.error('e que HTTP_PROXY/HTTPS_PROXY estão no ambiente onde o Node roda (não só num terminal diferente).');
+  }
   process.exit(1);
 });
