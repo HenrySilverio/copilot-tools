@@ -61,22 +61,41 @@ Antes de rodar, você precisa anexar `bootstrap-webcomponent.ts` — não está 
 
 ```
 #file:src/bootstrap-webcomponent.ts
-#file:src/app/shared/components/bsc-footer/bsc-footer.component.ts
-#file:src/app/shared/components/bsc-footer/bsc-footer.component.scss
-#file:federation.config.js
+#file:src/main.ts
+#file:src/index.html
+#file:angular.json
+#file:package.json
 
-Diagnostique por que bsc-footer.component.scss não é aplicado quando o
-componente é consumido pelo shell via este bootstrap-webcomponent.ts.
+Diagnostique por que classes utilitárias do Liquid (@bradesco/dsys-fed-liquid,
+ex: brad-flex, brad-gap-xxl, brad-btn) não são aplicadas quando bsc-footer é
+consumido pelo shell via bootstrap-webcomponent.ts, embora bsc-footer.component.scss
+(estilos próprios do componente) funcione normalmente.
 
-Confirme: qual ViewEncapsulation está em uso (BscFooterComponent não define
-explicitamente — está no default Emulated). Verifique se createCustomElement
-aqui usa Shadow DOM ou injeta <style> no <head> do document, e se
-shareAll({singleton:true}) no federation.config.js afeta a ordem/timing
-dessa injeção quando o shell já tem uma instância Angular rodando.
+Achado prévio: angular.json lista apenas src/styles.scss no array "styles" —
+nenhuma referência ao Liquid ali. Confirme:
+1. Onde o CSS do Liquid é de fato carregado — <link> no index.html, import
+   em main.ts, ou pacote CDN referenciado em outro lugar
+2. Se esse carregamento depende do index.html deste remote sendo servido
+   diretamente (funciona local/serve-original), e portanto NÃO acontece
+   quando o shell serve seu próprio index.html e só consome o bundle
+   exposto via Native Federation (exposes: './bootstrap-webcomponent')
+3. Se bootstrap-webcomponent.ts injeta esse CSS programaticamente (via JS,
+   garantindo funcionamento independente do host) ou assume que o link
+   estático já existe no documento
 
-NÃO proponha fix ainda — apenas causa raiz + evidência.
+NÃO proponha fix ainda — apenas causa raiz + evidência de onde o Liquid CSS
+deveria estar sendo injetado e onde essa injeção falha no fluxo do shell.
 ```
 
+```c
+import './app/web-component.module';
+
+console.log('Bootstrap for web component initialized.');
+```
+
+```c
+
+```
 Depois de confirmado, aí sim `/sdd-plan` escopado só nisso (Plan mode):
 ```
 /sdd-plan
