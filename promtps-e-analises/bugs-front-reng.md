@@ -108,3 +108,75 @@ Isso é literalmente o seu princípio de **on-demand over always-on** aplicado �
 - Prompt 2 (`/sdd-plan`): os mesmos + qualquer `*.instructions.md` de layout que já exista, para não duplicar convenção.
 
 Se o agente `test-auditor` ou o `sdd-workflow` já tiver path-scoping configurado nos `.instructions.md`, isso ajuda mas não substitui — instruction files restringem *quando* o contexto é injetado automaticamente, não impedem uma tool call de busca livre disparada pelo próprio prompt do usuário.
+
+----
+Confirmei o `federation_config.js` — `shared: {}` isolado, remote `recr-fed-agc-posvenda`. Isso já entra como contrato explícito no diagnóstico do item 1.
+
+## Trilha A — Diagnóstico (sem `/sdd-plan`)
+
+```
+#file:federation_config.js
+#file:bsc-footer.component.ts
+#file:bsc-footer.component.html
+#file:bsc-footer.component.scss
+
+Investigue por que bsc-footer.component perde espaçamento/posicionamento em
+HOM mas funciona em local. NÃO proponha fix ainda.
+
+Contrato confirmado: federation_config.js define shared:{} — isolamento total,
+nada é negociado com o shell. Logo, se a causa for CSS/variável não resolvida,
+NÃO pode ser porque algo deixou de ser compartilhado — investigue nesta ordem:
+
+1. Se bsc-footer.component.scss referencia custom properties (--liquid-*) do
+   @bradesco/dsys-fed-liquid, confirme se esse pacote é bundlado dentro do
+   próprio remote (coerente com shared:{}) ou se depende de import global
+   que só existe no host local (docker/dev-server) e não em HOM
+2. skip: [...] bloqueia @app/, @core/, @shared/ — confirme se algum desses
+   aliases é resolvido em tempo de build local (via tsconfig paths) mas falha
+   silenciosamente no bundle publicado em HOM
+3. Anexe aqui o manifest.json ou log de carregamento de remotes de HOM se
+   tiver acesso — preciso comparar versão resolvida do dsys-fed-liquid
+
+Retorne: causa raiz confirmada + evidência (arquivo:linha). Não edite nada.
+```
+
+Se não tiver o manifest de HOM em mãos ainda, anexe com `#file` quando for rodar — sem isso o agente vai especular no item 2, que é justamente o tipo de output que você não quer.
+
+## Trilha B — `/sdd-plan` (itens 2, 3, 4)
+
+```
+#file:bsc-footer.component.ts
+#file:bsc-footer.component.html
+#file:bsc-footer.component.scss
+#file:federation_config.js
+#file:dividas.component.html
+
+/sdd-plan
+
+Escopo: contrato de layout do bsc-footer.component, remote recr-fed-agc-posvenda
+(federation_config.js confirma shared:{} — isolamento total do shell).
+
+1. Footer deve permanecer ao final da página independente da altura do
+   conteúdo (qtd de dívidas renderizadas), sem sobrepor o último card.
+   Especifique via flex/grid no container pai (min-height: 100vh +
+   margin-top: auto no footer) — não via cálculo JS.
+
+2. bsc-footer.component.scss não é aplicado quando o componente é consumido
+   pelo shell. Diagnostique se é ViewEncapsulation.Emulated conflitando com
+   Angular Elements (bootstrap-webcomponent.ts expõe o componente como custom
+   element — confirme se o encapsulation muda nesse fluxo). Especifique onde
+   o estilo deve viver para não depender de CSS global do shell.
+
+3. Largura máxima dos componentes: especifique token de design escopado por
+   feature (CSS custom property com fallback local), seguindo a mesma
+   convenção usada em dividas.component.html:130 para brad-btn--auto —
+   modificador local, não variável global compartilhada.
+
+Restrição: nenhuma solução pode adicionar entrada em shared no
+federation_config.js nem CSS global no shell. Cada MFE resolve seu próprio
+contrato de estilo.
+
+Gere o spec em .sdd/, não implemente ainda.
+```
+
+Ajuste `dividas.component.html:130` e o path do `bsc-footer.component.*` se não forem esses exatos — usei os nomes que apareceram no seu histórico (print do fix `brad-btn--auto` e a memória do `ClienteService`/mappers). Confirme os paths reais antes de rodar, ou o `#file` vai falhar silenciosamente e o agente cai de novo em busca livre — o que você está tentando evitar.
