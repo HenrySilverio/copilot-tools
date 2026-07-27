@@ -57,6 +57,14 @@ Para criar componente novo: peça para listar as classes Liquid candidatas antes
 
 Para bug visual: peça para o Copilot inspecionar encapsulation mode, presença da classe de tema no DOM, e ordem de carregamento dos bundles antes de propor qualquer alteração de estilo — não aceitar patch de CSS sem esse diagnóstico anterior.
 
+## Catálogo de classes (evita "recriar em SCSS" por não saber que a classe existe)
+
+`scripts/extract-liquid-classes.mjs` baixa os bundles CSS e gera `liquid-classes-index.json` (índice completo, agrupado por prefixo) + `liquid-classes-summary.md` (só nomes de grupo e contagem). Rode uma vez por versão do Liquid, fora do fluxo do Copilot (é operação de rede, não de raciocínio).
+
+Para consultar, use sempre `scripts/query-liquid-classes.mjs <termo>` via terminal — o Copilot deve ler a saída filtrada do comando, nunca abrir o `liquid-classes-index.json` inteiro. Um design system atômico tende a ter milhares de classes; carregar o índice inteiro no contexto é o mesmo erro que o `bff-contract` evita com o OpenAPI monolítico.
+
+Antes de escrever SCSS novo para um padrão visual, rode a consulta pelo termo do componente (ex.: `btn`, `input`, `card`) e confirme que a classe não existe antes de assumir que precisa criar.
+
 ## Referência rápida
 
 | Asset Liquid | Como é consumido | Cuidado Angular |
