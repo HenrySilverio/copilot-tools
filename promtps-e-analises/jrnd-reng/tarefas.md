@@ -1,0 +1,73 @@
+# Tarefas
+
+## 1. Gravar a linha de base
+
+- [ ] 1.1 Criar uma suíte de caracterização contra o código atual, antes de qualquer
+  movimentação, cobrindo `entityParaGrupoView`, `entityParaView` e `viewParaEntity` de
+  `DividasMapper` para um conjunto fixo de entradas: agrupamento por agência, valores, texto
+  de "onde renegociar" e o conjunto propagado para a renegociação a partir de uma seleção de
+  contrato. Commitar este teste isoladamente, antes do primeiro commit de movimentação de
+  código. Conclusão: a suíte passa contra o código atual e está commitada em commit próprio.
+  (Critério 5)
+
+## 2. Criar o mapper de apresentação
+
+- [ ] 2.1 Criar `src/app/features/dividas/dividas-apresentacao.mapper.ts` com a classe
+  `DividasApresentacaoMapper` contendo `entityParaGrupoView`, `entityParaView` e
+  `viewParaEntity` copiadas de `DividasMapper` com corpo inalterado, importando apenas
+  `DividaEntity`, `DividaView` e `GrupoDividasView`. Conclusão: o arquivo compila e não
+  importa `ListagemDividasResponseDto` nem `GenerateSecureIdService`. (Critério 2)
+- [ ] 2.2 Extrair a expressão inline de `ondeRenegociar` de `entityParaView` para
+  `private static ondeRenegociar(restricoes: DividaEntity['restricoes']): string` no novo
+  arquivo, mantendo a mesma condição e os mesmos textos de retorno, e manter a regex de
+  `periodicidade` inline em `entityParaView`. Conclusão: `entityParaView` chama o método
+  privado e produz o mesmo objeto de antes. (Critérios 2, 5)
+- [ ] 2.3 Criar `src/app/features/dividas/dividas-apresentacao.mapper.spec.ts` com os blocos
+  `describe` de `entityParaGrupoView`, `entityParaView` e `viewParaEntity` recortados de
+  `src/app/mappers/dividas.mapper.spec.ts`, alterando somente import e nome da classe sob
+  teste. Conclusão: o spec novo passa com as asserções originais. (Critério 4)
+
+## 3. Trocar os chamadores
+
+- [ ] 3.1 Em `src/app/features/dividas/dividas.service.ts`, apontar as três chamadas de
+  `obterListagemDividas` (`entityParaGrupoView` e as duas `entityParaView`) para
+  `DividasApresentacaoMapper`. Conclusão: o arquivo não importa mais `DividasMapper` e o
+  spec do serviço continua verde. (Critérios 3, 5)
+- [ ] 3.2 Em `src/app/features/dividas/dividas.component.ts`, apontar `selectedContratos` para
+  `DividasApresentacaoMapper.viewParaEntity`. Conclusão: o arquivo não importa mais
+  `DividasMapper`. (Critérios 3, 5)
+- [ ] 3.3 Em `src/app/store/renegociacao.store.ts`, apontar o computed `obterGrupoContratos`
+  para `DividasApresentacaoMapper.entityParaView`, mantendo `DividasMapper` apenas para
+  `dtoParaEntity`. Conclusão: a store compila com os dois imports e o computed retorna o
+  mesmo grupo. (Critérios 3, 5)
+- [ ] 3.4 Atualizar os `jest.spyOn` de funções movidas em `dividas.service.spec.ts`,
+  `dividas.component.spec.ts`, `renegociacao.store.spec.ts`,
+  `conclusao.component.spec.ts` e `garantias.component.spec.ts` para
+  `DividasApresentacaoMapper`, sem alterar valores mockados nem asserções. Conclusão: os
+  cinco specs passam. (Critérios 3, 4)
+
+## 4. Esvaziar a origem
+
+- [ ] 4.1 Remover `entityParaGrupoView`, `entityParaView` e `viewParaEntity` de
+  `src/app/mappers/dividas.mapper.ts`, junto com os imports de `DividaView` e
+  `GrupoDividasView`, deixando `dtoParaEntity` com corpo idêntico. Conclusão: o arquivo tem
+  um único membro público e nenhum import de UI. (Critério 1)
+- [ ] 4.2 Remover de `src/app/mappers/dividas.mapper.spec.ts` os blocos já migrados na tarefa
+  2.3, deixando apenas os casos de `dtoParaEntity` e removendo imports que ficaram sem uso.
+  Conclusão: o spec passa e não referencia nenhuma função movida. (Critério 4)
+
+## 5. Verificação
+
+- [ ] 5.1 Executar lint e a checagem de tipos do projeto; ambos terminam sem erro. (Critério 6)
+- [ ] 5.2 Executar a suíte de testes completa; nenhum teste falha e a contagem de casos de
+  dívidas é igual ou maior que a de antes da mudança, comprovando que nenhum caso foi
+  perdido na migração. (Critérios 4, 5)
+- [ ] 5.3 Buscar no projeto por `DividasMapper.entityParaGrupoView`,
+  `DividasMapper.entityParaView` e `DividasMapper.viewParaEntity`; a busca não retorna
+  ocorrência em produção nem em teste. (Critério 3)
+- [ ] 5.4 Conferir, commit a commit da série desta mudança, que cada commit isolado passa na
+  checagem de tipos. (Critério 6)
+- [ ] 5.5 Executar a suíte de caracterização gravada na tarefa 1.1; ela passa sem nenhuma
+  linha de snapshot atualizada. (Critério 5)
+- [ ] 5.6 Conferir que `dtoParaEntity`, a regex de `periodicidade` e a fabricação de zeros em
+  `viewParaEntity` estão com corpo idêntico ao original, por diff. (Critérios 1, 2)
