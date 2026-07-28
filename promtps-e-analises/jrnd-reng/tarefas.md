@@ -2,13 +2,14 @@
 
 ## 1. Gravar a linha de base
 
-- [ ] 1.1 Criar uma suíte de caracterização contra o código atual, antes de qualquer
-  movimentação, cobrindo `entityParaGrupoView`, `entityParaView` e `viewParaEntity` de
-  `DividasMapper` para um conjunto fixo de entradas: agrupamento por agência, valores, texto
-  de "onde renegociar" e o conjunto propagado para a renegociação a partir de uma seleção de
-  contrato. Commitar este teste isoladamente, antes do primeiro commit de movimentação de
-  código. Conclusão: a suíte passa contra o código atual e está commitada em commit próprio.
-  (Critério 5)
+- [ ] 1.1 Antes de qualquer movimentação de código, criar fixture explícita de linha de
+  base: builders pequenos de entrada para `entityParaGrupoView`, `entityParaView` e para a
+  propagação de seleção de contrato à renegociação, com o objeto de saída esperado escrito
+  à mão (agrupamento por agência, valores, texto de "onde renegociar") e comparado via
+  `toEqual`. Não usar `toMatchSnapshot` — proibido pelas instructions de teste do projeto
+  como única verificação de lógica. Commitar este teste isoladamente, antes do primeiro
+  commit de movimentação de código. Conclusão: a fixture passa contra o código atual e
+  está commitada em commit próprio. (Critério 5)
 
 ## 2. Criar o mapper de apresentação
 
@@ -67,7 +68,11 @@
   ocorrência em produção nem em teste. (Critério 3)
 - [ ] 5.4 Conferir, commit a commit da série desta mudança, que cada commit isolado passa na
   checagem de tipos. (Critério 6)
-- [ ] 5.5 Executar a suíte de caracterização gravada na tarefa 1.1; ela passa sem nenhuma
-  linha de snapshot atualizada. (Critério 5)
+- [ ] 5.5 Executar a fixture de linha de base gravada na tarefa 1.1 contra o código após a
+  mudança; o resultado bate campo a campo com o valor esperado commitado, sem edição do
+  valor esperado. (Critério 5)
 - [ ] 5.6 Conferir que `dtoParaEntity`, a regex de `periodicidade` e a fabricação de zeros em
   `viewParaEntity` estão com corpo idêntico ao original, por diff. (Critérios 1, 2)
+- [ ] 5.7 Rodar a suíte com cobertura (`jest --coverage`) e confirmar que
+  `dividas.mapper.ts` e `dividas-apresentacao.mapper.ts` atingem branches >= 90%, incluindo
+  os ramos de `ondeRenegociar` e da regex de `periodicidade`. (Critérios 2, 4)

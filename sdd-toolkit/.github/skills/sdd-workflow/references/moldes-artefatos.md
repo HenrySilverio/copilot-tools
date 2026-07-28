@@ -49,12 +49,18 @@ onde um teste mora, que o build passa em cada etapa isolada.
 
 A exigência não desaparece, muda de forma — o critério continua tendo que ser
 mecanicamente verificável. "A tela renderiza igual" não é critério, porque não diz
-contra o quê. "O snapshot de tabela-contratos.component.spec.ts passa sem atualização"
-é.
+contra o quê. "Para a fixture de entrada gravada como linha de base, o resultado é igual,
+campo a campo, ao valor esperado commitado junto" é.
 
 A linha de base é gravada contra o código atual e commitada antes do primeiro commit da
 mudança; sua gravação é o primeiro agrupamento de `tarefas.md`. Linha de base gerada
 depois do refactor grava o resultado, não a referência.
+
+O mecanismo da linha de base segue as instructions de teste do projeto, não uma escolha
+livre do plano. Se elas proíbem snapshot automático como única verificação de lógica —
+caso comum, porque snapshot aceito às cegas em `git add` não prova nada — a linha de base
+é fixture explícita: entrada de builder pequeno, saída esperada escrita à mão, comparada
+com `toEqual`. O valor tem que estar legível na revisão.
 
 Critério estrutural que um lint ou um grep de CI consegue verificar deve virar lint ou
 grep. Regra em markdown é cobrada em token toda vez que carrega; regra em código custa
