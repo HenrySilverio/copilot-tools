@@ -4,7 +4,7 @@ Referência de formato. Leia antes de escrever qualquer artefato de `.sdd/change
 
 ## proposta.md
 
-Quatro seções, nesta ordem:
+Quatro seções obrigatórias, nesta ordem, mais uma opcional ao final:
 
 | Seção | Conteúdo | Tamanho |
 |---|---|---|
@@ -12,6 +12,7 @@ Quatro seções, nesta ordem:
 | Escopo | duas listas: dentro e fora do escopo | itens observáveis |
 | Restrições | o que não pode ser feito, transcrito do briefing | uma linha cada |
 | Critérios de aceite | ver formato abaixo | um por comportamento |
+| Divergências | opcional; ver formato abaixo | duas linhas por item |
 
 A lista de fora do escopo não é opcional. Escopo que não foi negado por escrito volta como
 retrabalho na revisão.
@@ -29,7 +30,8 @@ Cada critério é um item numerado com uma frase normativa usando MUST, SHOULD o
 seguida de uma a três condições de verificação no formato dado, quando, então.
 
 Um critério descreve comportamento observável. Se você precisou citar nome de classe,
-arquivo ou biblioteca, moveu detalhe de implementação para dentro do critério. Corrija.
+arquivo ou biblioteca, moveu detalhe de implementação para dentro do critério. Corrija —
+salvo no caso da subseção abaixo.
 
 Cobertura mínima por critério: um caminho feliz e um caminho de erro. Acrescente condição
 de borda sempre que houver limite numérico, temporal ou de permissão.
@@ -38,6 +40,42 @@ Sintomas de critério ruim: afirma que algo foi processado corretamente, em vez 
 visível; começa direto na ação, sem estado inicial; afirma que um método foi chamado, em
 vez da consequência percebida; encadeia vários comportamentos em uma frase, quando deveria
 ser mais de um critério.
+
+### Mudança sem alteração de comportamento
+
+Refactor puro não tem comportamento novo para descrever. Aqui, e só aqui, critério
+estrutural é legítimo: quais símbolos um artefato exporta, quais imports ele não tem,
+onde um teste mora, que o build passa em cada etapa isolada.
+
+A exigência não desaparece, muda de forma — o critério continua tendo que ser
+mecanicamente verificável. "A tela renderiza igual" não é critério, porque não diz
+contra o quê. "O snapshot de tabela-contratos.component.spec.ts passa sem atualização"
+é.
+
+A linha de base é gravada contra o código atual e commitada antes do primeiro commit da
+mudança; sua gravação é o primeiro agrupamento de `tarefas.md`. Linha de base gerada
+depois do refactor grava o resultado, não a referência.
+
+Critério estrutural que um lint ou um grep de CI consegue verificar deve virar lint ou
+grep. Regra em markdown é cobrada em token toda vez que carrega; regra em código custa
+zero e ainda pega o humano.
+
+Quando isso valer, a intenção da proposta declara que não há mudança de comportamento
+observável, e a mudança não gera deltas.
+
+## Divergências
+
+Opcional. Registra contradição encontrada no planejamento entre um documento de entrada e a
+realidade do código — briefing que listou menos chamadores do que existem, molde que impede
+escrever um critério verificável, restrição que o código já viola.
+
+Só entra divergência que **mudou** escopo, restrição ou critério. Cada entrada diz qual
+documento estava errado, o que a leitura encontrou, e o que foi feito. Duas linhas por
+entrada. Divergência que não mudou nada não vem para cá — vira issue ou some. Sem essa
+trava a seção vira caderno de anotações e toda proposta engorda.
+
+Existe porque desvio silencioso destrói o valor do fluxo mesmo quando o desvio está certo:
+o revisor compara o plano com a entrada, encontra diferença e reprova algo correto.
 
 ## design.md
 
@@ -84,17 +122,3 @@ implementação, esse algo tinha que ter virado restrição ou critério na prop
 
 Formato definido em `specs-e-deltas.md`. Só existe quando a mudança altera comportamento
 observável.
-
-### Mudança sem alteração de comportamento
-
-Refactor puro não tem comportamento novo para descrever. Aqui, e só aqui, critério
-estrutural é legítimo: quais símbolos um artefato exporta, quais imports ele não tem,
-onde um teste mora, que o build passa em cada etapa isolada.
-
-A exigência não desaparece, muda de forma — o critério continua tendo que ser
-mecanicamente verificável. "A tela renderiza igual" não é critério, porque não diz
-contra o quê. "O snapshot de tabela-contratos.component.spec.ts passa sem atualização"
-é.
-
-Quando isso valer, a intenção da proposta declara que não há mudança de comportamento
-observável, e a mudança não gera deltas.

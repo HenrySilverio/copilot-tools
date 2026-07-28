@@ -72,6 +72,12 @@ isso bastasse para exigir design, o rigor Lite deixaria de existir na prática.
 
 Leia `references/moldes-artefatos.md` antes de escrever qualquer artefato.
 
+Se um molde impedir escrever um critério verificável, o molde perde: critério verificável é o
+produto, molde é o formato. Mas o desvio vai registrado em `## Divergências` na proposta.
+Desvio silencioso de molde é o mesmo defeito de expandir escopo em silêncio — a etapa
+seguinte compara o plano com a entrada, encontra diferença e não tem como saber se foi
+julgamento ou descuido.
+
 Leia `references/specs-e-deltas.md` apenas quando a mudança consultar ou alterar comportamento
 registrado em `specs/`. Fora disso, não carregue: é contexto pago sem retorno.
 
@@ -86,6 +92,8 @@ nunca risque texto, nunca remova tarefa concluída. O arquivo é o controle de p
 - Todo critério que descreve comportamento observável novo ou alterado tem delta correspondente.
 - Toda tarefa tem critério de conclusão observável.
 - Nenhuma restrição declarada no briefing foi violada pelo plano.
+- Toda contradição entre entrada e realidade que alterou escopo, restrição ou critério está
+  registrada em `## Divergências`. Divergência ausente vira reprovação de algo correto.
 
 ## 7. Limites
 
