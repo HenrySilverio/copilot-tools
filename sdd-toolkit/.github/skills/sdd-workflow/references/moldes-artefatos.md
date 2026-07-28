@@ -84,3 +84,17 @@ implementação, esse algo tinha que ter virado restrição ou critério na prop
 
 Formato definido em `specs-e-deltas.md`. Só existe quando a mudança altera comportamento
 observável.
+
+### Mudança sem alteração de comportamento
+
+Refactor puro não tem comportamento novo para descrever. Aqui, e só aqui, critério
+estrutural é legítimo: quais símbolos um artefato exporta, quais imports ele não tem,
+onde um teste mora, que o build passa em cada etapa isolada.
+
+A exigência não desaparece, muda de forma — o critério continua tendo que ser
+mecanicamente verificável. "A tela renderiza igual" não é critério, porque não diz
+contra o quê. "O snapshot de tabela-contratos.component.spec.ts passa sem atualização"
+é.
+
+Quando isso valer, a intenção da proposta declara que não há mudança de comportamento
+observável, e a mudança não gera deltas.

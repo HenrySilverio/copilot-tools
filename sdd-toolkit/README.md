@@ -60,11 +60,11 @@ entra no commit, entra no pull request, é revisado como código.
 Este é o conceito que mais gera confusão, e o único que você precisa entender antes de
 usar. Três documentos falam do mesmo assunto em tempos verbais diferentes.
 
-| Documento | Onde vive | Tempo verbal | Quem escreve | Vida útil |
-|---|---|---|---|---|
-| briefing | `docs/briefings/` | "quero que **passe a** fazer X" | você, à mão | descartável |
-| proposta | `.sdd/changes/<id>/` | "**vamos fazer** X" | `/sdd-plan` | até arquivar |
-| spec | `.sdd/specs/` | "o sistema **faz** X" | `/sdd-archive` | permanente |
+| Documento | Onde vive            | Tempo verbal                    | Quem escreve   | Vida útil    |
+| --------- | -------------------- | ------------------------------- | -------------- | ------------ |
+| briefing  | `docs/briefings/`    | "quero que **passe a** fazer X" | você, à mão    | descartável  |
+| proposta  | `.sdd/changes/<id>/` | "**vamos fazer** X"             | `/sdd-plan`    | até arquivar |
+| spec      | `.sdd/specs/`        | "o sistema **faz** X"           | `/sdd-archive` | permanente   |
 
 O briefing é matéria-prima. Ele é lido uma vez, no planejamento, e suas restrições são
 transcritas para a proposta. Depois disso ninguém mais o lê — uma cópia fica em
@@ -181,12 +181,12 @@ Os quatro prompts vêm com `model: Claude Sonnet 5 (copilot)` no front matter, q
 padrão seguro. Mas as quatro etapas não têm a mesma dificuldade, e usar o mesmo modelo
 nas quatro é desperdício de um lado e risco do outro.
 
-| Comando | Natureza do trabalho | Modelo indicado |
-|---|---|---|
-| `/sdd-plan` | julgamento aberto: decidir escopo, criar critérios, escrever delta final | o mais capaz disponível |
-| `/sdd-implement` | execução contra documento, com verificação a cada passo | intermediário |
-| `/sdd-review` | achar o que está errado, ceticismo | o mais capaz disponível |
-| `/sdd-archive` | copiar texto e mover pasta, zero julgamento | o mais barato disponível |
+| Comando          | Natureza do trabalho                                                     | Modelo indicado          |
+| ---------------- | ------------------------------------------------------------------------ | ------------------------ |
+| `/sdd-plan`      | julgamento aberto: decidir escopo, criar critérios, escrever delta final | o mais capaz disponível  |
+| `/sdd-implement` | execução contra documento, com verificação a cada passo                  | intermediário            |
+| `/sdd-review`    | achar o que está errado, ceticismo                                       | o mais capaz disponível  |
+| `/sdd-archive`   | copiar texto e mover pasta, zero julgamento                              | o mais barato disponível |
 
 Para trocar, edite a linha `model:` no front matter do prompt. Use exatamente o nome que
 aparece no seletor de modelo do Copilot Chat na sua organização — um nome inválido
@@ -273,16 +273,38 @@ sempre. Não está incluído nesta versão.
 
 ## 10. Mapa dos arquivos
 
-| Arquivo | Papel |
-|---|---|
-| `.github/prompts/sdd-*.prompt.md` | os quatro comandos. Invocadores finos |
-| `.github/skills/sdd-workflow/SKILL.md` | contrato do fluxo. Fonte única de verdade |
-| `.github/skills/sdd-workflow/references/moldes-artefatos.md` | formato de cada artefato |
-| `.github/skills/sdd-workflow/references/specs-e-deltas.md` | contrato da camada de specs |
-| `.sdd/specs/index.md` | índice de capacidades. Mantido pelo archive |
-| `docs/briefings/EXEMPLO-briefing.md` | modelo de briefing |
-| `docs/guia-contexto-e-modelos.md` | modelo, esforço de raciocínio, janela de contexto |
+| Arquivo                                                      | Papel                                             |
+| ------------------------------------------------------------ | ------------------------------------------------- |
+| `.github/prompts/sdd-*.prompt.md`                            | os quatro comandos. Invocadores finos             |
+| `.github/skills/sdd-workflow/SKILL.md`                       | contrato do fluxo. Fonte única de verdade         |
+| `.github/skills/sdd-workflow/references/moldes-artefatos.md` | formato de cada artefato                          |
+| `.github/skills/sdd-workflow/references/specs-e-deltas.md`   | contrato da camada de specs                       |
+| `.sdd/specs/index.md`                                        | índice de capacidades. Mantido pelo archive       |
+| `docs/briefings/EXEMPLO-briefing.md`                         | modelo de briefing                                |
+| `docs/guia-contexto-e-modelos.md`                            | modelo, esforço de raciocínio, janela de contexto |
 
 Os prompts são deliberadamente finos. Toda regra de fluxo mora no `SKILL.md`, que é
 carregado uma vez por invocação. Regra duplicada em quatro arquivos é regra que vai
 divergir em quatro arquivos.
+
+| Name                     | Context Size | Capabilities  | In   | Out  | Cache Read | Cache Write |
+| :----------------------- | :----------- | :------------ | :--- | :--- | :--------- | :---------- |
+| Claude Fable 5           | 1M           | Tools, Vision | 1000 | 5000 | 100        | 1250        |
+| Claude Haiku 4.5         | 200K         | Tools, Vision | 100  | 500  | 10         | 125         |
+| Claude Opus 4.8          | 1M           | Tools, Vision | 500  | 2500 | 50         | 625         |
+| Claude Opus 5            | 1M           | Tools, Vision | 500  | 2500 | 50         | 625         |
+| Claude Sonnet 5          | 1M           | Tools, Vision | 200  | 1000 | 20         | 250         |
+| Gemini 3 Flash (Preview) | 173K         | Tools, Vision | 50   | 300  | 5          | 0           |
+| Gemini 3.1 Pro (Preview) | 1M           | Tools, Vision | 200  | 1200 | 20         | 0           |
+| Gemini 3.5 Flash         | 1M           | Tools, Vision | 150  | 900  | 15         | 0           |
+| Gemini 3.6 Flash         | 1M           | Tools, Vision | 150  | 750  | 15         | 0           |
+| GPT-5 mini               | 192K         | Tools, Vision | 25   | 200  | 2          | 0           |
+| GPT-5.3-Codex            | 400K         | Tools, Vision | 175  | 1400 | 17         | 0           |
+| GPT-5.4                  | 1M           | Tools, Vision | 250  | 1500 | 25         | 0           |
+| GPT-5.4 mini             | 400K         | Tools, Vision | 75   | 450  | 7          | 0           |
+| GPT-5.5                  | 1M           | Tools, Vision | 500  | 3000 | 50         | 0           |
+| GPT-5.6 Luna             | 1M           | Tools, Vision | 100  | 600  | 10         | 125         |
+| GPT-5.6 Sol              | 1M           | Tools, Vision | 500  | 3000 | 50         | 625         |
+| GPT-5.6 Terra            | 1M           | Tools, Vision | 250  | 1500 | 25         | 312         |
+| Kimi K2.7 Code           | 256K         | Tools, Vision | 95   | 400  | 19         | 0           |
+| MAI-Code-1-Flash         | 256K         | Tools         | 75   | 450  | 7          | 0           |
