@@ -106,6 +106,15 @@ espaço, número da tarefa, espaço, descrição.
 Conteúdo mínimo do agrupamento de verificação: lint e checagem de tipos sem erro; testes
 cobrindo os critérios de aceite; cada critério mapeado para ao menos um teste.
 
+Escope lint, checagem de tipos e teste aos arquivos desta mudança, não ao repositório
+inteiro — a lista de `design.md` ou a de escopo da proposta é a fonte. Comando de
+repositório inteiro reprova mudança correta por dívida pré-existente que não é dela.
+
+Se a suíte completa do projeto for longa o bastante para não concluir no terminal de um
+agente, não peça ao agente para rodá-la: peça o resultado de uma execução manual do
+desenvolvedor, registrado aqui como evidência. Comando que sempre é morto por timeout não
+é verificação, é ritual.
+
 Regras:
 
 - Uma tarefa é uma unidade concluível em uma sessão. Se precisa de três commits, quebre.

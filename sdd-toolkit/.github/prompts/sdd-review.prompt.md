@@ -1,7 +1,7 @@
 ---
 agent: agent
 model: Claude Sonnet 5 (copilot)
-tools: ['readFile', 'search', 'runCommands']
+tools: ['readFile', 'search', 'execute']
 description: SDD - audita uma mudança implementada contra a proposta, as tarefas e os deltas.
 ---
 
@@ -61,6 +61,16 @@ mecanicamente e reprova.
 
 Rode lint, checagem de tipos e testes, se os comandos estiverem declarados no
 agrupamento de verificação. Não conserte falha; reporte.
+
+Escopo importa. Se um comando roda sobre o repositório inteiro e um achado dele está em
+arquivo que não consta na lista de arquivos afetados desta mudança, isso é dívida
+pré-existente, não achado desta revisão — confirme antes de reprovar por ele.
+
+Timeout de ambiente não é falha de código. Se um comando não concluir dentro do terminal
+do agente — suíte pesada, processo longo — não repita indefinidamente nem trate a
+interrupção como reprovação automática: registre que o comando não pôde ser executado
+neste ambiente e cobre evidência já registrada em `tarefas.md` (resultado de execução
+manual) em vez de tentar rodar de novo.
 
 ## Passo 4 - Veredito
 

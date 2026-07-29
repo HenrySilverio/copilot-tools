@@ -59,10 +59,18 @@
 
 ## 5. Verificação
 
-- [ ] 5.1 Executar lint e a checagem de tipos do projeto; ambos terminam sem erro. (Critério 6)
-- [ ] 5.2 Executar a suíte de testes completa; nenhum teste falha e a contagem de casos de
-  dívidas é igual ou maior que a de antes da mudança, comprovando que nenhum caso foi
-  perdido na migração. (Critérios 4, 5)
+- [ ] 5.1 Executar lint e checagem de tipos restritos aos arquivos desta mudança (a lista de
+  arquivos afetados do design.md); ambos terminam sem erro novo introduzido por esta
+  mudança. Erro pré-existente em arquivo fora dessa lista não bloqueia esta tarefa —
+  registrar em Divergências se for relevante ao contexto da revisão. (Critério 6)
+- [ ] 5.2 Executar com `npx jest --runInBand` os specs dos arquivos desta mudança:
+  `dividas.service.spec.ts`, `dividas.component.spec.ts`, `dividas.mapper.spec.ts`,
+  `dividas-apresentacao.mapper.spec.ts`, `dividas-apresentacao.baseline.spec.ts`,
+  `renegociacao.store.spec.ts`, `conclusao.component.spec.ts`,
+  `garantias.component.spec.ts`; nenhum falha e a contagem de casos de dívidas é igual ou
+  maior que a de antes da mudança. Executar a suíte completa do projeto separadamente —
+  fora do terminal do agente, pela duração — e registrar aqui o resultado (comando,
+  contagem de passou/falhou) como evidência complementar. (Critérios 4, 5)
 - [ ] 5.3 Buscar no projeto por `DividasMapper.entityParaGrupoView`,
   `DividasMapper.entityParaView` e `DividasMapper.viewParaEntity`; a busca não retorna
   ocorrência em produção nem em teste. (Critério 3)

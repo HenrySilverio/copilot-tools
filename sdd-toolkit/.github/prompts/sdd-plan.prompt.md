@@ -1,17 +1,17 @@
 ---
 agent: agent
 model: Claude Sonnet 5 (copilot)
-tools: ['readFile', 'search', 'createFile', 'editFiles']
-description: SDD - transforma um briefing em proposta, tarefas e deltas de especificação.
+tools: ['readFile', 'search', 'createFile', 'editFiles', 'runCommands']
+description: SDD - executa as tarefas de uma mudança, marcando o checklist conforme conclui.
 ---
 
-# /sdd-plan
+# /sdd-implement
 
-Transformar um briefing em acordo escrito, antes de qualquer linha de código.
+Executar o checklist até que a implementação satisfaça os critérios de aceite.
 
 ## Entradas
 
-Briefing: ${input:briefing:Caminho do arquivo em docs/briefings/}
+Mudança: ${input:changeId:change-id, ou vazio para listar as abertas}
 
 Contexto adicional: ${input:contexto:Caminhos separados por vírgula, ou vazio}
 
@@ -19,78 +19,57 @@ Contexto adicional: ${input:contexto:Caminhos separados por vírgula, ou vazio}
 
 Leia `.github/skills/sdd-workflow/SKILL.md`.
 
-Se o briefing vier vazio ou apontar para arquivo inexistente, pare e peça o caminho. Não
-invente o conteúdo do pedido.
+Se a mudança vier vazia, liste as pastas de `.sdd/changes/`, exceto archive, com a contagem
+de tarefas concluídas sobre o total, e pare pedindo a escolha. Se vier inexistente, liste
+as opções e pare.
 
-## Passo 1 - Ler as entradas
+## Passo 1 - Carregar na ordem certa
 
-Leia o briefing inteiro. Depois leia os caminhos de contexto adicional, se houver.
+Leia proposta, depois design se existir, depois tarefas. Depois disso, e só depois, leia os
+caminhos de contexto adicional e o código necessário.
 
-Não leia código nesta etapa. Código lido antes de o problema estar claro enviesa o plano
-para o que já existe e queima contexto que a etapa seguinte vai precisar.
+Ler código antes de saber o que deve ser feito queima contexto e enviesa a solução para o
+que já existe. As regras técnicas vêm das instructions do projeto e de outras skills; este
+prompt não define nenhuma.
 
-## Passo 2 - Extrair restrições
+Não leia `briefing.md`, `deltas.md` nem `.sdd/specs/`. A proposta é o acordo; o resto é
+entrada de outra etapa e só ocuparia contexto.
 
-Liste o que o briefing declara como proibido, intocável ou obrigatório manter compatível.
-Essa lista vira a seção de restrições da proposta, transcrita, não parafraseada.
+## Passo 2 - Executar
 
-Restrição perdida entre o briefing e a proposta é a falha mais cara do fluxo, porque só
-aparece na revisão, quando o código já existe.
+Para cada tarefa pendente, em ordem:
 
-## Passo 3 - Estado atual
+1. Implemente a menor mudança que a satisfaz.
+2. Rode a verificação correspondente, seja build, lint ou teste, quando aplicável.
+3. Edite o arquivo de tarefas trocando `[ ]` por `[x]` naquela linha, somente após a
+   verificação passar. Não altere o texto da tarefa, não reordene, não remova.
+4. Se a tarefa se mostrar impossível ou errada, pare imediatamente e reporte. Não improvise
+   caminho alternativo sem aprovação.
 
-Leia `.sdd/specs/index.md`.
+Esta etapa nunca executa `git commit`. Histórico é decisão do desenvolvedor, não do agente:
+commit automático mistura política de git — mensagem, convenção da equipe, hook, assinatura
+— com execução de tarefa, e um commit malfeito custa mais para desfazer do que uma edição de
+arquivo. Se algum critério exigir evidência por commit, o ponto de corte é o limite entre
+agrupamentos de `tarefas.md`: pare o agente ali, commit você mesmo, e invoque
+`/sdd-implement` de novo com o mesmo change-id — ele retoma sozinho da próxima tarefa
+pendente, porque o progresso mora no arquivo, não na conversa.
 
-Decida quais capacidades do índice a mudança toca. Leia o `spec.md` apenas dessas. Nunca
-leia `specs/` inteiro.
+## Passo 3 - Divergência
 
-Se o índice estiver vazio, ou se a capacidade afetada não constar dele, isso significa
-"não documentado", nunca "não existe". Nesse caso, e só nesse caso, leia o código dos
-caminhos de contexto para entender o comportamento atual.
+Se um critério de aceite se revelar errado, incompleto ou inviável: pare de codificar,
+descreva o critério afetado, o que a realidade mostrou e as opções, e aguarde decisão. Não
+edite a proposta por conta própria.
 
-Antes de escrever qualquer delta, leia `.github/skills/sdd-workflow/references/specs-e-deltas.md`.
+Ajustar a proposta em silêncio para caber no código destrói o valor do fluxo: ela deixa de
+ser acordo e vira registro do que já foi feito. O mesmo vale para `deltas.md` e para
+`.sdd/specs/`, que esta etapa não edita em nenhuma hipótese.
 
-## Passo 4 - Histórico
+## Passo 4 - Fechamento
 
-Liste as pastas de `.sdd/changes/`, exceto `archive/`. Se alguma mudança aberta tocar a
-mesma capacidade, declare o conflito na proposta em vez de planejar por cima dela.
-
-Consulte `.sdd/changes/archive/` apenas se precisar do motivo de uma decisão anterior, e
-só a pasta relevante. O archive é auditoria, não leitura de rotina.
-
-## Passo 5 - Classificar rigor
-
-Aplique a regra de rigor do SKILL.md e declare o resultado, Lite ou Full, com o gatilho
-que o justificou. Alterar `specs/` não sobe o rigor.
-
-## Passo 6 - Gerar
-
-Leia `.github/skills/sdd-workflow/references/moldes-artefatos.md`.
-
-Escolha o change-id e crie `.sdd/changes/<change-id>/` com:
-
-1. `briefing.md` — cópia literal do arquivo de briefing, sem edição, sem resumo e sem
-   reformatação.
-2. `proposta.md` — intenção, escopo, restrições, critérios de aceite.
-3. `design.md` — apenas em rigor Full.
-4. `tarefas.md` — agrupamentos numerados, agrupamento de Verificação obrigatório.
-5. `deltas.md` — apenas se a mudança alterar comportamento observável.
-
-O texto de cada delta é final: ele será copiado para `specs/` no arquivamento sem
-reescrita. Se você não consegue escrever o texto final agora, o critério de aceite
-correspondente ainda está vago — corrija o critério, não adie o delta.
-
-Não atribua número a requisito novo. O número é alocado na aplicação.
-
-Antes de terminar, confira os portões de qualidade do SKILL.md, incluindo o de cobertura:
-todo critério que descreve comportamento novo ou alterado tem delta, e todo delta tem
-critério.
+Ao concluir tudo, execute o agrupamento de verificação.
 
 ## Saída
 
-No máximo quinze linhas: change-id; rigor e gatilho; arquivos criados; capacidades
-consultadas; capacidades afetadas pelos deltas, com a contagem por operação; perguntas
-em aberto. Não reproduza o conteúdo dos artefatos.
-
-Se houver ambiguidade que impeça um critério de aceite verificável, não escreva nada:
-liste as perguntas e pare.
+No máximo quinze linhas: tarefas concluídas nesta sessão, com número e título; arquivos
+criados ou alterados; comandos de verificação e resultado; tarefas restantes; divergências
+ou bloqueios. Não reproduza diffs.
